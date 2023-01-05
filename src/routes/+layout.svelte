@@ -26,9 +26,8 @@
 	];
 </script>
 
-<Navbar {navLinks} />
+<!-- <Navbar {navLinks} /> -->
 
-<!-- Content slot -->
 <slot />
 
-<Footer {navLinks} />
+<!-- <Footer {navLinks} /> -->
