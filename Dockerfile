@@ -1,20 +1,25 @@
 FROM node:19
 
-# Create app directory
-WORKDIR /usr/src/app
+# Move package.json into a tmp directory
+ADD package.json /tmp/package.json
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
+# Remove the old build directory
+RUN rm -rf build
 
-RUN npm install
+# Install the dependencies
+RUN cd /tmp && npm install -q
 
-# Bundle app source
-COPY . .
+# Add current directory content to source
+ADD ./ /src
 
+# Copy to dependencies to the source directory
+RUN rm -rf /src/node_modules && cp -a /tmp/node_modules /src/
+
+# Set the working directory
+WORKDIR /src
+
+# Build the appliction
 RUN npm run build
 
-EXPOSE 80 443
-
-CMD [ "npm", "run", "serve" ]
+# Run the built application
+CMD ["node", "build"]

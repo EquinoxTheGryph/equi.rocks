@@ -8,9 +8,7 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter({
-			out: 'server/build'
-		}),
+		adapter: adapter(),
 		alias: {
 			// $lib and $lib/server are built in
 			'$static': 'static',

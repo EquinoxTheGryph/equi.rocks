@@ -73,6 +73,10 @@
 	export const csr = false;
 </script>
 
+<svelte:head>
+    <title>Equinox's Frontpage</title>
+</svelte:head>
+
 <article class="flex flex-col items-center p-2 pt-10 text-center">
 	<img
 		src="icon.png"
