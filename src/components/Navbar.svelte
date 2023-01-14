@@ -1,20 +1,21 @@
 <script lang="ts">
-    export let navLinks: {
-        url: string,
-        name: string
-    }[];
+	export let navLinks: {
+		url: string;
+		name: string;
+	}[];
 </script>
 
-<nav class="w-full h-10 bg-slate-600 text-slate-200">
-	<!-- Icon and title container -->
-	<div class="" />
-
-	<!-- Nav Items -->
-	<ul class="flex items-center h-full">
+<nav class="fixed z-nav flex h-nav w-full bg-secondary-dark text-text-dark drop-shadow-md">
+	<ul class="flex h-full items-center">
+		<li>
+			<a href="/" class="p-2 hover:text-secondary">Equi.rocks</a>
+		</li>
 		{#each navLinks as navItem}
 			<li>
-				<a href={navItem.url} class="p-2">{navItem.name}</a>
+				<a href={navItem.url} class="p-2 hover:text-secondary">{navItem.name}</a>
 			</li>
 		{/each}
 	</ul>
 </nav>
+
+<div class="h-nav w-full" />

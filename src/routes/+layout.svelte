@@ -30,4 +30,4 @@
 
 <slot />
 
-<!-- <Footer {navLinks} /> -->
+<Footer {navLinks} />

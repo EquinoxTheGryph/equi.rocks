@@ -16,9 +16,9 @@
         flex
         w-80 
         rounded-full 
-        bg-red-800 
+        bg-secondary-dark
         p-2 
-        text-zinc-100  
+        text-text-dark
         drop-shadow-lg
         transition-transform 
         hover:scale-[1.025]
