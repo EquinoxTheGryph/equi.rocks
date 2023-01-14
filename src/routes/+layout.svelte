@@ -26,7 +26,7 @@
 	];
 </script>
 
-<!-- <Navbar {navLinks} /> -->
+<Navbar {navLinks} />
 
 <slot />
 

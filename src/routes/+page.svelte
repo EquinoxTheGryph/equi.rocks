@@ -79,7 +79,7 @@
 
 <article class="flex flex-col items-center p-2 pt-10 text-center">
 	<img
-		src="icon.png"
+		src="/images/icon.png"
 		alt="A headshot drawing of Equinox The Gryphon"
 		class="mb-4 w-60 rounded-full drop-shadow-lg"
 	/>

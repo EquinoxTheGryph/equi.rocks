@@ -1,0 +1,12 @@
+art:
+  icon: https://equi.rocks
+  favicon: https://thlaylisden.carrd.co
+  (fluffy)loaf: https://blajn.art
+fonts:
+  Nunito: https://fonts.google.com/specimen/Nunito
+  JetBrains Mono: https://www.jetbrains.com/lp/mono/
+technologies:
+  sveltekit: https://kit.svelte.dev
+  tailwindcss: https://tailwindcss.com
+  docker: https://www.docker.com
+  caddy: https://caddyserver.com
