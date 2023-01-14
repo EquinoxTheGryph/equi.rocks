@@ -26,8 +26,9 @@
 	];
 </script>
 
-<Navbar {navLinks} />
-
-<slot />
-
-<Footer {navLinks} />
+<div class="flex min-h-screen flex-col">
+	<Navbar {navLinks} />
+	<slot />
+	<div class="flex-grow" />
+	<Footer {navLinks} />
+</div>
