@@ -37,3 +37,6 @@ Any additional configuration variables can be found [here](https://github.com/sv
 ```bash
 docker build .
 ```
+
+## Development notes
+- mdi-svelte has no TS definitions, using custom definitions in app.d.ts

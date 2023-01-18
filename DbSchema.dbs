@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Sqlite" id="Project-50e" database="Sqlite" >
+	<schema name="Default" >
+		<table name="userLink" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" />
+			<column name="title" type="TEXT" jt="12" mandatory="y" />
+			<column name="subTitle" type="TEXT" jt="12" />
+			<column name="url" type="TEXT" jt="12" />
+			<column name="icon" type="TEXT" jt="12" />
+			<index name="pk_userLink" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+	</schema>
+	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.36.0.3.jar" driver_desc="Standard" host="localhost" port="7210" instance="/home/stefan/Desktop/equirocks-website/test.db" />
+	<layout name="Main Layout" id="Layout-1001" show_relation="columns" >
+		<callout x="48" y="48" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools. 
+Add tables to the layout by drag & drop from the project structure tree.
+For a better understanding of the schema, create multiple layouts with the same or different tables.
+Drop this callout from its context menu.]]></comment>
+		</callout>
+		<script name="id" id="Editor-2441" language="SQL" >
+			<string><![CDATA[SELECT id
+FROM
+	userLink k;]]></string>
+		</script>
+	</layout>
+</project>

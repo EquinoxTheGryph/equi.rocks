@@ -22,7 +22,6 @@
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.13",
-		"dotenv": "^16.0.3",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
@@ -42,7 +41,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"cors": "^2.8.5",
-		"express": "^4.18.2"
+		"sqlite3": "^5.1.4"
 	}
 }
