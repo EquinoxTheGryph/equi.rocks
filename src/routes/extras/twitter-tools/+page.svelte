@@ -13,7 +13,9 @@
         "design",
     ];
 
-    const softLimit = 1;
+    const softLimit = 100;
+
+    const zwsp = "\u200B";
 
     let text: string = "";
     let result: string = "";
@@ -22,7 +24,7 @@
     $: result = getResult(text);
 
     function getResult(input: string): string {
-        return "";
+        return input;
     }
 
     function apply() {
@@ -34,9 +36,9 @@
 <h2>Helps reducing the chances of bots being attracted by your posts!</h2>
 <p>This works by inserting zero-width spaces in between potentially bot-baiting words</p>
 
-<textarea bind:value={text} />
+<textarea bind:value={text} class="text-black"/>
 
-<p>{result.length - softLimit}</p>
+<p>{softLimit - result.length}</p>
 
 {#if result.length > softLimit}
     <p>The resulting text length is too long for twitter!</p>

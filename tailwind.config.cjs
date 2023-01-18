@@ -24,7 +24,8 @@ module.exports = {
 				modal: 5
 			},
 			height: {
-				nav: '2.5em'
+				nav: '2.5em',
+				navMobile: '4em',
 			},
 			colors: {
 				own: customColorTheme,
