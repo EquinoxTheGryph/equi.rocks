@@ -79,7 +79,7 @@
 		alt="A headshot drawing of Equinox The Gryphon"
 		class="mb-4 w-60 h-60 rounded-full drop-shadow-lg bg-own-600"
 	/>
-	<h1 class="pb-2 text-4xl">Equinox The Gryphon</h1>
+	<h1>Equinox The Gryphon</h1>
 	<p class="opacity-80">Programmer and sometimes an artist</p>
 	<p class="opacity-80">23, He/Him, Dutch</p>
 	<p class="opacity-50 pt-2 text-sm italic">This site is still work in progress.<br/>Keep an eye on one of my social media sites for updates!</p>

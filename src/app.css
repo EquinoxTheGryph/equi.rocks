@@ -24,7 +24,7 @@
 			url('/fonts/Nunito/static/Nunito-Regular.ttf') format('truetype'),
 			url('/fonts/Nunito/static/Nunito-SemiBold.ttf') format('truetype'),
 			url('/fonts/Nunito/static/Nunito-SemiBoldItalic.ttf') format('truetype');
-		font-weight: 100 200 300 400 500 600 700 800 900;
+		font-weight: 100 900;
 		font-style: normal italic;
 	}
 
@@ -51,7 +51,38 @@
 			url('/fonts/JetBrains Mono/static/JetBrainsMono-SemiBoldItalic.ttf') format('truetype'),
 			url('/fonts/JetBrains Mono/static/JetBrainsMono-Thin.ttf') format('truetype'),
 			url('/fonts/JetBrains Mono/static/JetBrainsMono-ThinItalic.ttf') format('truetype');
-		font-weight: 100 200 300 400 500 600 700 800 900;
+		font-weight: 100 900;
 		font-style: normal italic;
+	}
+
+	h1 {
+		@apply text-5xl pb-2 font-medium;
+	}
+
+	h2 {
+		@apply text-3xl pb-1;
+	}
+
+	h3 {
+		@apply text-2xl;
+	}
+
+	h4 {
+		@apply text-xl;
+	}
+
+	h5 {
+		@apply font-bold;
+	}
+
+	h6 {
+		@apply font-light italic opacity-70;
+	}
+}
+
+
+@layer components {
+	.btn {
+		@apply px-2 py-1 border-2 rounded border-primary hover:bg-primary hover:text-primary-dark active:opacity-90;
 	}
 }

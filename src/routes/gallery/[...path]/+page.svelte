@@ -4,4 +4,4 @@
     export let data: PageData;
 </script>
 
-<p class="italic opacity-50">Gallery coming soon™!</p>
+<h6>Gallery coming soon™!</h6>

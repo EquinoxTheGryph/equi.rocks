@@ -28,6 +28,7 @@ module.exports = {
 				navMobile: '4em',
 			},
 			colors: {
+				currentColorT: 'rgb(currentColor * var(--tw-bg-opacity))',
 				own: customColorTheme,
 				/**
 				 * DEFAULT: Light theme
