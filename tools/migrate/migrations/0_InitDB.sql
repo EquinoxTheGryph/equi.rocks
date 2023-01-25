@@ -35,9 +35,4 @@ CREATE TABLE userLink (
 	FOREIGN KEY ( icon ) REFERENCES icon( name )  
  );
 
-CREATE TABLE version ( 
-	date                 INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP PRIMARY KEY  ,
-	name                 TEXT NOT NULL    
- );
-
 COMMIT;

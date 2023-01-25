@@ -11,9 +11,10 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"serve": "node server/serve.js"
+		"migrate": "esrun ./tools/migrate"
 	},
 	"devDependencies": {
+		"@digitak/esrun": "^3.2.19",
 		"@mdi/js": "^7.1.96",
 		"@sveltejs/adapter-auto": "^1.0.0",
 		"@sveltejs/adapter-node": "^1.1.0",
