@@ -1,6 +1,7 @@
-import { Database } from 'sqlite3';
+import pkg from 'sqlite3';
+const { Database } = pkg;
 
-export class Db extends Database {
+export class Db extends pkg.Database {
 	/**
      *
      */
