@@ -1,0 +1,6 @@
+crawl-delay: 5
+User-agent: * 
+Disallow: /api/
+Disallow: /wp-json/
+Disallow: /wp-admin/
+Disallow: /configuration/
