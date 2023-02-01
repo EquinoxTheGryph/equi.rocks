@@ -3,7 +3,6 @@
 	import Footer from '$components/Footer.svelte';
 	import Navbar from '$components/Navbar.svelte';
 	import NavbarMobile from '$components/NavbarMobile.svelte';
-	import RichPreviewInfo from '$components/RichPreviewInfo.svelte';
 	import { mdiHammerScrewdriver, mdiHome, mdiInformation, mdiViewGallery } from '@mdi/js';
 	import '../app.css';
 
@@ -32,12 +31,6 @@
 		}
 	];
 </script>
-
-<RichPreviewInfo
-	title="Equinox's Frontpage"
-	description="Links to some of my other accounts can be found here"
-	image="/images/icon.png"
-/>
 
 <Navbar {navLinks} />
 

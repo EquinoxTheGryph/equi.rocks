@@ -55,6 +55,10 @@
 		font-style: normal italic;
 	}
 
+	h1, h2, h3, h4, h5, h6 {
+		@apply text-center;
+	}
+
 	h1 {
 		@apply text-5xl pb-2 font-medium;
 	}
@@ -75,7 +79,7 @@
 		@apply font-bold;
 	}
 
-	h6 {
+	h6, em {
 		@apply font-light italic opacity-70;
 	}
 }

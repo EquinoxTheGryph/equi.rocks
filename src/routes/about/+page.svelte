@@ -1,5 +1,6 @@
 <script lang="ts">
 	import LinkButton from '$components/LinkButton.svelte';
+	import RichPreviewInfo from '$components/RichPreviewInfo.svelte';
 	import {
 		mdiCashMultiple,
 		mdiCast, mdiComment,
@@ -72,6 +73,11 @@
 
 	export const csr = false;
 </script>
+
+<RichPreviewInfo
+	title="Equinox's About Page"
+	description="Links to some of my other accounts can be found here"
+/>
 
 <article class="flex flex-col items-center p-2 text-center">
 	<img

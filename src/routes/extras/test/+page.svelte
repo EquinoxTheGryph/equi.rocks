@@ -12,6 +12,7 @@
 <h6>Header h6</h6>
 
 <cite>Citation</cite>
+<em>Emphasized text</em>
 
 <code>Code !@#$%^&*() 1234567890</code>
 

@@ -15,12 +15,12 @@
 		icon: mdiTwitter
 	}}
 />
-<LinkButton
+<!-- <LinkButton
 	linkItem={{
 		name: 'Test page',
 		url: '/extras/test',
 		sub: 'Random test stuff',
 		icon: mdiWrench
 	}}
-/>
-<h6>...More soon!</h6>
+/> -->
+<em>...More soon!</em>
