@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-
 	export let title: string;
 	export let description: string | null = null;
 	export let image: string = '/images/icon.png';
 	export let imageAlt: string = 'Site Icon';
 	export let renderTitle: boolean = false;
+	export let url = "https://equi.rocks";
+	export let name = "equi.rocks";
 
-	const url = $page.url.href.replace(/\?.*/g, '');
-	const name = $page.url.hostname;
 	const site = '@EquinoxTheGryph';
 	const creator = site;
 
