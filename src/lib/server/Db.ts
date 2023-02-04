@@ -1,3 +1,4 @@
+import { env } from '$env/dynamic/private';
 import pkg from 'sqlite3';
 const { Database } = pkg;
 
@@ -11,4 +12,4 @@ export class Db extends pkg.Database {
     }
 }
 
-export const db = new Db(':memory:');
+export const db = new Db(env.SQLITE_FILE);
