@@ -8,5 +8,8 @@
 { form?.success }
 
 <form method="POST">
+    <input type="text" />
+    <input type="text" />
+    <input type="text" />
     <button formaction="?/test">Test</button>
 </form>

@@ -12,7 +12,7 @@ const config = {
 		alias: {
 			// $lib and $lib/server are built in
 			'$static': 'static',
-			'$components': 'src/components', // A library of reusable Svelte components
+			'$components': 'src/lib/components', // A library of reusable Svelte components
 			'$stores': 'src/lib/stores', // Svelte stores
 			'$models': 'src/lib/models', // Models carry data and applies any filters or validation rules
 			'$filters': 'src/lib/filters', // Filters convert data from one format to another

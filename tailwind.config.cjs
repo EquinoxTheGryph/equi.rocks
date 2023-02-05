@@ -1,5 +1,3 @@
-const colors = require('tailwindcss/colors');
-
 const customColorTheme = {
 	50: '#fffbfb',
 	100: '#f2dcdc',
@@ -10,7 +8,7 @@ const customColorTheme = {
 	600: '#5e0606',
 	700: '#430000',
 	800: '#280000',
-	900: '#0d0000',
+	900: '#0d0000'
 };
 
 /** @type {import('tailwindcss').Config} */
@@ -25,7 +23,7 @@ module.exports = {
 			},
 			height: {
 				nav: '2.5em',
-				navMobile: '4em',
+				navMobile: '4em'
 			},
 			colors: {
 				currentColorT: 'rgb(currentColor * var(--tw-bg-opacity))',
@@ -57,6 +55,6 @@ module.exports = {
 			mono: ['JetBrains Mono', 'ui-monospace', 'monospace']
 		}
 	},
-	plugins: [require('@tailwindcss/typography')],
+	plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 	darkMode: 'class' // Uncomment to use system defaults
 };
