@@ -34,7 +34,7 @@ program
     .command('up')
     .description('Migrate up')
     .action(() => {
-        dbMigrate.migrate()
+        dbMigrate.migrateUp().then(version => console.log('Version: ' + version?.name))
     })
 
 program.parse()
