@@ -8,6 +8,14 @@ interface VersionEntry {
 	date: number
 }
 
+/**
+ * TODO:
+ * 	- Add migrate to version function
+ * 	- Implement migrate down
+ * 	- Add js/ts migration support (for migrating data)
+ * 	- Parameterize the file/folder locations
+ * 	- 
+ */
 export default class DbMigrate {
 	db: pkg.Database;
 
@@ -19,11 +27,18 @@ export default class DbMigrate {
 	migrationUpRegex = /^(?<version>\d)+_.+(?<!_DOWN)(_UP)?\.sql$/;
 	migrationDownRegex = /^(?<version>\d)+_.+_DOWN\.sql$/;
 
+	/**
+	 * Constructor
+	 */
 	constructor() {
 		this.db = new Database(this.dbFile);
 	}
 
-	// Check the current version and return its name
+	/**
+	 * Retrieve the current database version
+	 * 
+	 * @returns The current version. `null` if the table does not exist
+	 */
 	version(): Promise<VersionEntry | null> {
 		return new Promise((res, rej) => {
 			this.sqlGet<VersionEntry>(
@@ -42,12 +57,12 @@ export default class DbMigrate {
 		});
 	}
 
-	needsMigrating() {
-		// Check if the database needs to be migrated to the most recent version
-		// Returns a boolean
-		this.version();
-	}
-
+	/**
+	 * Perform a migration upgrade
+	 * 
+	 * @param target TODO: Allow migrating to a specific version
+	 * @returns The current version after the migration
+	 */
 	async migrateUp(target?: string): Promise<VersionEntry | null> {
 		// Migrate up or down, depending on the target (always up if null)
 		// Apply the required steps
@@ -99,6 +114,9 @@ export default class DbMigrate {
 		return await this.version();
 	}
 
+	/**
+	 * Initialize the database with the version table
+	 */
 	init(): Promise<void> {
 		return new Promise((res, rej) => {
 			this.db.run(
@@ -117,6 +135,9 @@ export default class DbMigrate {
 	}
 
 	//#region Promisified sql functions
+	/**
+	 * Run an sql statement and return all items
+	 */
 	sqlAll<T = Record<string, unknown>>(sql: string): Promise<T[]> {
 		return new Promise((res, rej) => {
 			this.db.all(sql, (error, arr) => {
@@ -126,6 +147,9 @@ export default class DbMigrate {
 		});
 	}
 
+	/**
+	 * Run an sql statement and return a single item
+	 */
 	sqlGet<T = Record<string, unknown>>(sql: string): Promise<T> {
 		return new Promise((res, rej) => {
 			this.db.get(sql, (error, arr) => {
@@ -135,6 +159,9 @@ export default class DbMigrate {
 		});
 	}
 
+	/**
+	 * Run an sql statement
+	 */
 	sqlRun(sql: string): Promise<void> {
 		return new Promise((res, rej) => {
 			this.db.run(sql, (error) => {
@@ -144,6 +171,10 @@ export default class DbMigrate {
 		});
 	}
 
+	/**
+	 * Run an .sql file
+	 * @param filename File location
+	 */
 	sqlRunFile(filename: string): Promise<void> {
 		return new Promise((res, rej) => {
 			fs.readFile(filename, 'utf-8').then((data) =>
