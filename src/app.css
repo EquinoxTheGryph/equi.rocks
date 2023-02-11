@@ -128,14 +128,14 @@
 	}
 
 	button {
-		@apply px-3 py-2 border-2 rounded border-primary hover:bg-primary hover:text-primary-dark active:opacity-90;
+		@apply px-2 py-1 border-2 rounded border-primary hover:bg-primary hover:text-primary-dark active:opacity-90;
 	}
 	/* #endregion Apply default form styling */
 }
 
 
-@layer components {
+/* @layer components {
 	.btn {
 		@apply px-2 py-1 border-2 rounded border-primary hover:bg-primary hover:text-primary-dark active:opacity-90;
 	}
-}
+} */
