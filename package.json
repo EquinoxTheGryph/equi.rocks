@@ -11,10 +11,9 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"migrate": "esrun ./tools/migrate"
+		"knex": "knex --knexfile=knexfile.cjs"
 	},
 	"devDependencies": {
-		"@digitak/esrun": "^3.2.19",
 		"@mdi/js": "^7.1.96",
 		"@sveltejs/adapter-auto": "^1.0.0",
 		"@sveltejs/adapter-node": "^1.1.0",
@@ -44,7 +43,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"commander": "^10.0.0",
-		"sqlite3": "^5.1.4"
+		"knex": "^2.4.2",
+		"pg": "^8.9.0",
+		"ts-node": "^10.9.1"
 	}
 }

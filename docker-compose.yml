@@ -5,7 +5,7 @@ services:
         container_name: node-app
         restart: unless-stopped
         environment: 
-            - NODE_ENV=production
+            NODE_ENV: production
         build:
             context: ./
 
@@ -18,10 +18,22 @@ services:
             - "80:80"
             - "443:443"
         volumes:            
-        - $PWD/Caddyfile:/etc/caddy/Caddyfile
-        - $PWD/site:/srv
-        - caddy_data:/data
-        - caddy_config:/config
+            - $PWD/Caddyfile:/etc/caddy/Caddyfile
+            - $PWD/site:/srv
+            - caddy_data:/data
+            - caddy_config:/config
+
+    # Run the database server
+    db:
+        image: postgres
+        restart: unless-stopped
+        # TODO: Let the node-app connect to the database!
+        volumes:            
+            - /home/debian/Docker/Database:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres_dev
+            POSTGRES_DB: equirocks
 
 volumes:
   caddy_data:

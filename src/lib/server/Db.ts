@@ -1,15 +1,13 @@
 import { env } from '$env/dynamic/private';
-import pkg from 'sqlite3';
-const { Database } = pkg;
+import knex from "knex";
 
-export class Db extends pkg.Database {
-	/**
-     *
-     */
-    constructor(filename: string, callback?: ((err: Error | null) => void) | undefined) {
-        super(filename, callback);
-        console.log('Connecting to DB');
+export const db = knex({
+    client: 'pg',
+    connection: {
+        host: env.DB_HOST ?? '127.0.0.1',
+        port: parseInt(env.DB_PORT) ?? 5432,
+        user: env.DB_USER ?? 'postgres',
+        password: env.DB_PASSWORD ?? 'postgres',
+        database: env.DB_DATABASE ?? 'postgres',
     }
-}
-
-export const db = new Db(env.SQLITE_FILE);
+});
