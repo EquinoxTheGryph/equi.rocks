@@ -25,7 +25,7 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
+      database: 'equirocks',
       user:     'postgres',
       password: 'postgres_dev'
     },
