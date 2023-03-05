@@ -19,7 +19,7 @@ export const actions = {
         data: iconData.toString(),
     }
 
-    db.insert(icon).into('icon')
+    await db.insert(icon).into('icon')
   }
 } satisfies Actions;
 
