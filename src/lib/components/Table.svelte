@@ -16,16 +16,27 @@
 <table>
 	<tr>
 		{#each columns as column}
-			<th scope="col" data-name={column.name}>{column.title ?? column.name}</th>
+			<th scope="col" data-name={column.name}>
+				{column.title ?? column.name}
+			</th>
 		{/each}
 	</tr>
 	{#each value as row, index}
 		<tr data-index={index}>
 			{#each columns as column}
+				{@const _value = row[column.name]}
 				{#if column.highlight}
-					<th scope="row" data-name={column.name}>{row[column.name] ?? ''}</th>
+					<th scope="row" data-name={column.name}>
+						<slot {column} {row} value={_value}>
+							{_value}
+						</slot>
+					</th>
 				{:else}
-					<td data-name={column.name}>{row[column.name] ?? ''}</td>
+					<td data-name={column.name}>
+						<slot {column} {row} value={_value}>
+							{_value}
+						</slot>
+					</td>
 				{/if}
 			{/each}
 		</tr>
@@ -35,22 +46,22 @@
 <style lang="postcss">
 	td,
 	th {
-        @apply p-1 border border-collapse border-own-400;
+		@apply border-collapse border border-own-400 p-1;
 	}
 
 	td {
-        @apply text-center;
+		@apply text-center;
 	}
 
 	tr:nth-child(even) {
-        @apply bg-own-700;
+		@apply bg-own-700;
 	}
 
 	th[scope='col'] {
-        @apply bg-own-600;
+		@apply bg-own-600;
 	}
 
 	th[scope='row'] {
-        @apply bg-own-600;
+		@apply bg-own-600;
 	}
 </style>

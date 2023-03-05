@@ -6,7 +6,7 @@
  * File Table
  */
 export interface File {
-	id: string;
+	id?: string;
 	parent: string;
 	name: string;
 	title: string;
@@ -30,7 +30,7 @@ export interface Icon {
  * UserLink Table
  */
 export interface UserLink {
-	id: string;
+	id?: string;
 	title: string;
 	subTitle: string;
 	url: string;

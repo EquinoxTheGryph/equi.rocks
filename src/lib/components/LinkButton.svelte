@@ -10,8 +10,9 @@
 </script>
 
 <a
-    href={linkItem.url}
-    class="
+	on:click
+	href={linkItem.url}
+	class="
         m-2
         flex
         w-80 
@@ -26,20 +27,20 @@
         active:translate-y-[2px]
     "
 >
-    {#if linkItem.icon}
-        <span class="px-1.5 flex items-center">
-            <Icon path={linkItem.icon} />
-        </span>
-    {/if}
-    
-    <section class="flex-grow text-center">
-        <p>
-            {linkItem.name}
-        </p>
-        <p class="text-sm opacity-75 font-medium">{linkItem.sub}</p>
-    </section>
+	{#if linkItem.icon}
+		<span class="flex items-center px-1.5">
+			<Icon path={linkItem.icon} />
+		</span>
+	{/if}
 
-    {#if linkItem.icon}
-        <span class="w-[24px] px-2" />
-    {/if}
+	<section class="flex-grow text-center">
+		<p>
+			{linkItem.name}
+		</p>
+		<p class="text-sm font-medium opacity-75">{linkItem.sub}</p>
+	</section>
+
+	{#if linkItem.icon}
+		<span class="w-[24px] px-2" />
+	{/if}
 </a>

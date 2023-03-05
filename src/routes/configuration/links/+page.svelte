@@ -1,27 +1,24 @@
 <script lang="ts">
-	import Table from '$components/Table.svelte';
+	import LinkButton from '$components/LinkButton.svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 </script>
 
-<form method="POST" action="?/new">
-	<label>
-		Name
-		<input name="name" type="text" />
-	</label>
-	<label>
-		Data
-		<input name="data" type="text" />
-	</label>
-	<button>Add</button>
-</form>
+{#each data.userLinks as item}
+	<LinkButton
+		linkItem={{
+			name: item.title,
+			sub: item.subTitle,
+			icon: item.icon,
+			url: `/configuration/links/${item.id}`
+		}}
+	/>
+{/each}
 
-<Table
-	columns={[
-		{ name: 'title', title: 'Title', highlight: true },
-		{ name: 'subTitle', title: 'Sub Title' },
-		{ name: 'url', title: 'Url' },
-	]}
-	value={data.userLinks}
+<LinkButton
+	linkItem={{
+		name: 'Add new',
+		url: `/configuration/links/new`
+	}}
 />

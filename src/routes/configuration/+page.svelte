@@ -9,7 +9,7 @@
     let value = {}
 </script>
 
-{ form?.success }
+<!-- { form?.success } -->
 <!-- 
 
 <form method="POST">
@@ -18,11 +18,11 @@
     <input type="text" />
     <button formaction="?/test">Test</button>
 </form> -->
-
+<!-- 
 <Form bind:value>
     <FormInput name="hello">
         Input text
     </FormInput>
 </Form>
 
-{JSON.stringify(value)}
+{JSON.stringify(value)} -->
