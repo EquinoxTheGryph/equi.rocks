@@ -11,7 +11,8 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"knex": "knex --knexfile=knexfile.cjs"
+		"knex": "knex --knexfile=knexfile.cjs",
+		"passwd": "node scripts/passwd.cjs"
 	},
 	"devDependencies": {
 		"@mdi/js": "^7.1.96",
@@ -20,6 +21,7 @@
 		"@sveltejs/kit": "^1.0.0",
 		"@tailwindcss/forms": "^0.5.3",
 		"@tailwindcss/typography": "^0.5.8",
+		"@types/bcrypt": "^5.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.13",
@@ -34,15 +36,19 @@
 		"prettier-plugin-tailwindcss": "^0.2.1",
 		"svelte": "^3.54.0",
 		"svelte-check": "^2.9.2",
-		"svelte-use-form": "^2.6.1",
+		"sveltekit-superforms": "^0.6.5",
 		"tailwindcss": "^3.2.4",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.0.0",
-		"vitest": "^0.25.3"
+		"vitest": "^0.25.3",
+		"zod": "^3.21.4"
 	},
 	"type": "module",
 	"dependencies": {
+		"@auth/core": "^0.5.1",
+		"@auth/sveltekit": "^0.3.0",
+		"bcrypt": "^5.1.0",
 		"knex": "^2.4.2",
 		"pg": "^8.9.0",
 		"ts-node": "^10.9.1"

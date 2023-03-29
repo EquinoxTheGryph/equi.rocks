@@ -23,6 +23,7 @@ module.exports = {
 			},
 			height: {
 				nav: '2.5em',
+				footer: '10em',
 				navMobile: '4em'
 			},
 			colors: {
