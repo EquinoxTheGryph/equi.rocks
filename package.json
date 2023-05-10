@@ -11,8 +11,8 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"knex": "knex --knexfile=knexfile.cjs",
-		"passwd": "node scripts/passwd.cjs"
+		"passwd": "node scripts/passwd.cjs",
+		"prisma": "prisma"
 	},
 	"devDependencies": {
 		"@mdi/js": "^7.1.96",
@@ -34,6 +34,7 @@
 		"prettier-plugin-organize-imports": "^3.2.1",
 		"prettier-plugin-svelte": "^2.8.1",
 		"prettier-plugin-tailwindcss": "^0.2.1",
+		"prisma": "^4.14.0",
 		"svelte": "^3.54.0",
 		"svelte-check": "^2.9.2",
 		"sveltekit-superforms": "^0.6.5",
@@ -48,8 +49,8 @@
 	"dependencies": {
 		"@auth/core": "^0.5.1",
 		"@auth/sveltekit": "^0.3.0",
+		"@prisma/client": "^4.14.0",
 		"bcrypt": "^5.1.0",
-		"knex": "^2.4.2",
 		"pg": "^8.9.0",
 		"ts-node": "^10.9.1"
 	}
