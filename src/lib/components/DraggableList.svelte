@@ -5,6 +5,7 @@
     type T = $$Generic;
 
     export let list: T[];
+    export let draggable = true;
 
     const dispatch = createEventDispatcher<{
         itemMove: {
@@ -72,12 +73,12 @@
     <div
         class="cursor-grab"
         animate:flip={{ duration: 250 }}
-        draggable={true}
+        {draggable}
         on:dragstart={(event) => handleDragStart(event, index)}
         on:dragend={() => (hovering = null)}
         on:drop={(event) => handleDrop(event, index)}
         on:dragover={(event) => handleDragOver(event, index)}
     >
-        <slot {item} active={hovering === index} />
+        <slot {item} {index} active={hovering === index} />
     </div>
 {/each}
