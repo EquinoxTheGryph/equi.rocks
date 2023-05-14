@@ -29,30 +29,21 @@ model File {
   @@index([id])
 }
 
-model Icon {
-  name      String     @id
-  data      String
-  userLinks UserLink[] @relation("userLink_icon") @ignore
-
-  @@index([name])
-}
-
 model UserLink {
-  id        String       @id @default(uuid()) @db.Uuid
-  title     String       @unique
-  content   String
-  link      String
-  order     Int          @default(0)
-  type      UserLinkType @default(LINK)
-  icon      String?
-  icon_data Icon?        @relation("userLink_icon", fields: [icon], references: [name])
+  id      String       @id @default(uuid()) @db.Uuid
+  title   String       @unique /// Item Title
+  content String? /// Item Description 
+  url     String? /// Url to open when the user clicks it
+  order   Int          @default(0) /// At which place should the item appear in (Lower = earlier)
+  type    UserLinkType @default(LINK) /// Display Type
+  icon    String? /// Icon SVG Path
 
   @@index([id])
 }
 
 enum UserLinkType {
-  LINK
-  TITLE
-  DESCRIPTION
-  CUSTOM
+  LINK /// Link Button
+  TITLE /// Simple Title
+  DESCRIPTION /// Simple Description
+  OTHER /// Other
 }

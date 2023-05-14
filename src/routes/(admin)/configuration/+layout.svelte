@@ -3,7 +3,6 @@
         mdiArrowLeft,
         mdiHammerScrewdriver,
         mdiHome,
-        mdiViewGallery
     } from '@mdi/js';
     import { page } from '$app/stores';
     import Icon from 'mdi-svelte';
@@ -18,11 +17,6 @@
             name: 'Home',
             action: '/configuration',
             icon: mdiHome
-        },
-        {
-            name: 'Icons',
-            action: '/configuration/icons',
-            icon: mdiViewGallery
         },
         {
             name: 'Links',

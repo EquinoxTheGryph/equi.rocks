@@ -3,9 +3,9 @@
 
     export let linkItem: {
         name: string;
-        sub?: string;
-        url?: string;
-        icon?: string;
+        sub?: string | null;
+        url?: string | null;
+        icon?: string | null;
     };
 </script>
 
@@ -38,7 +38,7 @@
         <p>
             {linkItem.name}
         </p>
-        <p class="text-sm font-medium opacity-75">{linkItem.sub}</p>
+        <p class="text-sm font-medium opacity-75">{linkItem.sub ?? ''}</p>
     </section>
 
     {#if linkItem.icon}
