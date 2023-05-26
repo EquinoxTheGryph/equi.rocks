@@ -26,6 +26,7 @@
         hover:scale-[1.025]
         hover:drop-shadow-sm
         active:translate-y-[2px]
+        select-none
     "
 >
     {#if linkItem.icon}

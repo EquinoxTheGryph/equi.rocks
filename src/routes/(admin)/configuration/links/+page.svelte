@@ -3,6 +3,8 @@
     import LinkButton from '$components/LinkButton.svelte';
     import { superForm } from 'sveltekit-superforms/client';
     import type { PageData } from './$types';
+    import Dialog from '$components/Dialog.svelte';
+    import LinkEditFormContent from '$components/LinkEditFormContent.svelte';
 
     export let data: PageData;
 
@@ -26,7 +28,7 @@
         });
     }
 
-    data.userLinks = data.userLinks.sort((a, b) => a.order - b.order)
+    data.userLinks = data.userLinks.sort((a, b) => a.order - b.order);
 </script>
 
 <DraggableList
@@ -45,28 +47,11 @@
         }}
         on:click={() => (edit = edit == index ? -1 : index)}
     />
-    <div class="absolute z-popup rounded bg-primary-dark" hidden={index != edit}>
-        <form method="POST" action="?/edit" class="flex flex-col gap-2" use:enhance>
-            <input type="hidden" name="id" value={item?.id ?? ''} />
-            <label>
-                Title
-                <input name="title" type="text" value={item?.title ?? ''} />
-            </label>
-            <label>
-                Subtitle
-                <input name="content" type="text" value={item?.content ?? ''} />
-            </label>
-            <label>
-                Url
-                <input name="url" type="url" value={item?.url ?? ''} />
-            </label>
-            <label>
-                Icon
-                <input name="icon" type="text" value={item?.icon ?? ''} />
-            </label>
-            <button>Edit</button>
+    <Dialog open={index == edit} modal on:afterClose={() => (edit = -1)}>
+        <form method="POST" action="?/edit" class="flex w-80 flex-col gap-2" use:enhance>
+            <LinkEditFormContent {item} />
         </form>
-    </div>
+    </Dialog>
     <hr hidden={!active} />
 </DraggableList>
 
@@ -85,25 +70,8 @@
     }}
     on:click={() => (edit = -2)}
 />
-<div class="absolute z-popup rounded bg-primary-dark" hidden={-2 != edit}>
-    <form method="POST" action="?/edit" class="flex flex-col gap-2" use:enhance>
-        <input type="hidden" name="id" value="" />
-        <label>
-            Title
-            <input name="title" type="text" value="" />
-        </label>
-        <label>
-            Content
-            <input name="content" type="text" value="" />
-        </label>
-        <label>
-            Url
-            <input name="url" type="url" value="" />
-        </label>
-        <label>
-            Icon
-            <input name="icon" type="text" value="" />
-        </label>
-        <button>Edit</button>
+<Dialog open={-2 == edit} modal>
+    <form method="POST" action="?/edit" class="flex w-80 flex-col gap-2" use:enhance>
+        <LinkEditFormContent />
     </form>
-</div>
+</Dialog>

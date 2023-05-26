@@ -51,6 +51,7 @@
 		"@auth/sveltekit": "^0.3.0",
 		"@prisma/client": "^4.14.0",
 		"bcrypt": "^5.1.0",
+		"js-convert-case": "^4.2.0",
 		"pg": "^8.9.0",
 		"ts-node": "^10.9.1"
 	}
