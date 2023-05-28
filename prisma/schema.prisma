@@ -31,7 +31,7 @@ model File {
 
 model UserLink {
   id      String       @id @default(uuid()) @db.Uuid
-  title   String       @unique /// Item Title
+  title   String /// Item Title
   content String? /// Item Description 
   url     String? /// Url to open when the user clicks it
   order   Int          @default(0) /// At which place should the item appear in (Lower = earlier)

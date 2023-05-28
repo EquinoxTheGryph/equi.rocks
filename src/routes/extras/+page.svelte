@@ -9,9 +9,9 @@
 <h1>Fun, Useful and Silly stuff!</h1>
 <LinkButton
 	linkItem={{
-		name: 'Twitter anti-bot tools',
+		title: 'Twitter anti-bot tools',
 		url: '/extras/twitter-tools',
-		sub: 'Helps reduce bots in your comments',
+		content: 'Helps reduce bots in your comments',
 		icon: mdiTwitter
 	}}
 />

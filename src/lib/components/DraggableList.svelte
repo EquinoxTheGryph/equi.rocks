@@ -6,6 +6,7 @@
 
     export let list: T[];
     export let draggable = true;
+    export let disableAnimation = false;
 
     const dispatch = createEventDispatcher<{
         itemMove: {
@@ -72,7 +73,7 @@
 {#each list as item, index (item)}
     <div
         class="cursor-grab"
-        animate:flip={{ duration: 250 }}
+        animate:flip={{ duration: disableAnimation ? 0 : 250 }}
         {draggable}
         on:dragstart={(event) => handleDragStart(event, index)}
         on:dragend={() => (hovering = null)}

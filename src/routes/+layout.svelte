@@ -3,6 +3,7 @@
 	import { page } from '$app/stores';
 	import '../app.css';
 	import Icon from 'mdi-svelte';
+    import Globals from '$components/Globals.svelte';
 
 	let navLinks = [
 		{
@@ -90,3 +91,6 @@
 </nav>
 
 <div class="h-navMobile w-full sm:hidden" />
+
+<!-- Global components -->
+<Globals />

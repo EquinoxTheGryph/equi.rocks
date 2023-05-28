@@ -1,12 +1,8 @@
 <script lang="ts">
+    import type { UserLink } from '@prisma/client';
     import Icon from 'mdi-svelte';
 
-    export let linkItem: {
-        name: string;
-        sub?: string | null;
-        url?: string | null;
-        icon?: string | null;
-    };
+    export let linkItem: Partial<UserLink>;
 </script>
 
 <a
@@ -37,9 +33,9 @@
 
     <section class="flex-grow text-center">
         <p>
-            {linkItem.name}
+            {linkItem.title}
         </p>
-        <p class="text-sm font-medium opacity-75">{linkItem.sub ?? ''}</p>
+        <p class="text-sm font-medium opacity-75">{linkItem.content ?? ''}</p>
     </section>
 
     {#if linkItem.icon}

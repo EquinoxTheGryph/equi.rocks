@@ -5,17 +5,24 @@
     import type { PageData } from './$types';
     import Dialog from '$components/Dialog.svelte';
     import LinkEditFormContent from '$components/LinkEditFormContent.svelte';
+    import UserLinkView from '$components/UserLinkView.svelte';
+    import { onMount, tick } from 'svelte';
+    import type { UserLink } from '@prisma/client';
+    import { confirm } from '$components/GlobalDialog.svelte';
+    import { invalidateAll } from '$app/navigation';
 
     export let data: PageData;
 
-    const { form, enhance } = superForm(data.form, {
+    const { form, enhance, delayed, submitting } = superForm(data.form, {
         onUpdated(event) {
             edit = -1;
+            sortNow();
         }
     });
 
     let edit = -1;
     let reordered = false;
+    let disableAnimation = false;
 
     function applyReorder() {
         fetch('/api/v1/links/reorder', {
@@ -28,37 +35,63 @@
         });
     }
 
-    data.userLinks = data.userLinks.sort((a, b) => a.order - b.order);
+    function confirmDelete(item: UserLink) {
+        confirm("Delete item")
+            .then((selection) => {
+                if (selection == 'confirm') {
+                    const data = new FormData();
+
+                    data.set('id', item.id);
+
+                    return fetch('?/delete', {
+                        method: 'POST',
+                        body: data
+                    });
+                }
+            })
+            .then(() => {
+                invalidateAll();
+            });
+    }
+
+    async function sortNow() {
+        disableAnimation = true;
+        data.userLinks = data.userLinks.sort((a, b) => a.order - b.order);
+        await tick();
+        disableAnimation = false;
+    }
+
+    sortNow();
 </script>
+
+<article class="flex flex-col items-center p-2 text-center">
+    <h1>Edit Links</h1>
+    <p class="opacity-80">Click on an item below to edit its information</p>
+    <p class="opacity-80">Drag an item to edit its order (Don't forget to apply)</p>
+</article>
 
 <DraggableList
     list={data.userLinks}
     draggable={edit == -1}
+    {disableAnimation}
     on:itemMove={() => (reordered = true)}
     let:item
     let:active
     let:index
 >
-    <LinkButton
-        linkItem={{
-            name: item.title,
-            sub: item.content,
-            icon: item.icon
-        }}
+    <UserLinkView
+        userLink={item}
+        editing={true}
         on:click={() => (edit = edit == index ? -1 : index)}
+        on:deleteClick={() => confirmDelete(item)}
     />
-    <Dialog open={index == edit} modal on:afterClose={() => (edit = -1)}>
-        <form method="POST" action="?/edit" class="flex w-80 flex-col gap-2" use:enhance>
-            <LinkEditFormContent {item} />
-        </form>
-    </Dialog>
     <hr hidden={!active} />
 </DraggableList>
 
 {#if reordered}
     <LinkButton
         linkItem={{
-            name: 'Apply Reorder'
+            title: 'Apply Reorder'
         }}
         on:click={applyReorder}
     />
@@ -66,12 +99,17 @@
 
 <LinkButton
     linkItem={{
-        name: 'Add new'
+        title: 'Add new'
     }}
     on:click={() => (edit = -2)}
 />
-<Dialog open={-2 == edit} modal>
+
+<Dialog open={-1 != edit} modal on:afterClose={() => (edit = -1)}>
     <form method="POST" action="?/edit" class="flex w-80 flex-col gap-2" use:enhance>
-        <LinkEditFormContent />
+        <LinkEditFormContent
+            item={edit == -1 ? null : edit == -2 ? null : data.userLinks[edit]}
+            delayed={$delayed}
+            disabled={$submitting}
+        />
     </form>
 </Dialog>

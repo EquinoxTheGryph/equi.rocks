@@ -9,5 +9,4 @@
 		NOTE: This page will be moved to <a href="/about" class="underline">the about page</a>
 		 in the future!
 	</em>
-	<Page />
 </main>

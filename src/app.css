@@ -3,136 +3,144 @@
 @tailwind utilities;
 
 @layer base {
-	/* #region Fonts */
-	/* Sans-Serif Font */
-	@font-face {
-		font-family: 'Nunito';
-		src: url('/fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype-variations'),
-			url('/fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf') format('truetype-variations'),
-			url('/fonts/Nunito/static/Nunito-Black.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-BlackItalic.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-Bold.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-BoldItalic.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-ExtraBold.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-ExtraBoldItalic.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-ExtraLight.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-ExtraLightItalic.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-Italic.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-Light.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-LightItalic.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-Medium.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-MediumItalic.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-Regular.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-SemiBold.ttf') format('truetype'),
-			url('/fonts/Nunito/static/Nunito-SemiBoldItalic.ttf') format('truetype');
-		font-weight: 100 900;
-		font-style: normal italic;
-	}
+    /* #region Fonts */
+    /* Sans-Serif Font */
+    @font-face {
+        font-family: 'Nunito';
+        src: url('/fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype-variations'),
+            url('/fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf') format('truetype-variations'),
+            url('/fonts/Nunito/static/Nunito-Black.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-BlackItalic.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-Bold.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-BoldItalic.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-ExtraBold.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-ExtraBoldItalic.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-ExtraLight.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-ExtraLightItalic.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-Italic.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-Light.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-LightItalic.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-Medium.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-MediumItalic.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-Regular.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-SemiBold.ttf') format('truetype'),
+            url('/fonts/Nunito/static/Nunito-SemiBoldItalic.ttf') format('truetype');
+        font-weight: 100 900;
+        font-style: normal italic;
+    }
 
-	/* Monospace Font */
-	@font-face {
-		font-family: 'JetBrains Mono';
-		src: url('/fonts/JetBrains Mono/JetBrainsMono-VariableFont_wght.ttf')
-				format('truetype-variations'),
-			url('/fonts/JetBrains Mono/JetBrainsMono-Italic-VariableFont_wght.ttf')
-				format('truetype-variations'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-Bold.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-BoldItalic.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraBold.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraBoldItalic.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraLight.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraLightItalic.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-Italic.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-Light.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-LightItalic.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-Medium.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-MediumItalic.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-Regular.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-SemiBold.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-SemiBoldItalic.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-Thin.ttf') format('truetype'),
-			url('/fonts/JetBrains Mono/static/JetBrainsMono-ThinItalic.ttf') format('truetype');
-		font-weight: 100 900;
-		font-style: normal italic;
-	}
-	/* #endregion Fonts */
+    /* Monospace Font */
+    @font-face {
+        font-family: 'JetBrains Mono';
+        src: url('/fonts/JetBrains Mono/JetBrainsMono-VariableFont_wght.ttf')
+                format('truetype-variations'),
+            url('/fonts/JetBrains Mono/JetBrainsMono-Italic-VariableFont_wght.ttf')
+                format('truetype-variations'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-Bold.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-BoldItalic.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraBold.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraBoldItalic.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraLight.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraLightItalic.ttf')
+                format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-Italic.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-Light.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-LightItalic.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-Medium.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-MediumItalic.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-Regular.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-SemiBold.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-SemiBoldItalic.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-Thin.ttf') format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-ThinItalic.ttf') format('truetype');
+        font-weight: 100 900;
+        font-style: normal italic;
+    }
+    /* #endregion Fonts */
 
-	/* #region Apply header and text styling */
-	h1, h2, h3, h4, h5, h6 {
-		@apply text-center;
-	}
+    /* #region Apply header and text styling */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply text-center;
+    }
 
-	h1 {
-		@apply text-5xl pb-2 font-medium;
-	}
+    h1 {
+        @apply pb-2 text-5xl font-medium;
+    }
 
-	h2 {
-		@apply text-3xl pb-1;
-	}
+    h2 {
+        @apply pb-1 text-3xl;
+    }
 
-	h3 {
-		@apply text-2xl;
-	}
+    h3 {
+        @apply text-2xl;
+    }
 
-	h4 {
-		@apply text-xl;
-	}
+    h4 {
+        @apply text-xl;
+    }
 
-	h5 {
-		@apply font-bold;
-	}
+    h5 {
+        @apply font-bold;
+    }
 
-	h6, em {
-		@apply font-light italic opacity-70;
-	}
-	/* #endregion Apply header and text styling */
+    h6,
+    em {
+        @apply font-light italic opacity-70;
+    }
+    /* #endregion Apply header and text styling */
 
-	/* #region Apply default form styling */
-	input[type='text'],
-	input[type='email'],
-	input[type='url'],
-	input[type='password'],
-	input[type='number'],
-	input[type='date'],
-	input[type='datetime-local'],
-	input[type='month'],
-	input[type='search'],
-	input[type='tel'],
-	input[type='time'],
-	input[type='week'] {
-		@apply form-input;
-	}
+    /* #region Apply default form styling */
+    input[type='text'],
+    input[type='email'],
+    input[type='url'],
+    input[type='password'],
+    input[type='number'],
+    input[type='date'],
+    input[type='datetime-local'],
+    input[type='month'],
+    input[type='search'],
+    input[type='tel'],
+    input[type='time'],
+    input[type='week'] {
+        @apply form-input;
+    }
 
-	textarea {
-		@apply form-textarea;
-	}
+    textarea {
+        @apply form-textarea;
+    }
 
-	select {
-		@apply form-select;
-	}
+    select {
+        @apply form-select;
+    }
 
-	select[multiple] {
-		@apply form-multiselect;
-	}
+    select[multiple] {
+        @apply form-multiselect;
+    }
 
-	input[type='checkbox'] {
-		@apply form-checkbox;
-	}
+    input[type='checkbox'] {
+        @apply form-checkbox;
+    }
 
-	input[type='radio'] {
-		@apply form-radio;
-	}
+    input[type='radio'] {
+        @apply form-radio;
+    }
 
-	input[type], select, textarea {
-		@apply rounded bg-primary text-primary-dark;
-	}
+    input[type],
+    select,
+    textarea {
+        @apply rounded bg-primary text-primary-dark disabled:opacity-75;
+    }
 
-	button {
-		@apply px-2 py-1 border-2 rounded border-primary hover:bg-primary hover:text-primary-dark active:opacity-90;
-	}
-	/* #endregion Apply default form styling */
+    button {
+        @apply rounded border-2 border-primary px-2 py-1 hover:bg-primary hover:text-primary-dark active:opacity-90;
+    }
+    /* #endregion Apply default form styling */
 }
-
 
 /* @layer components {
 	.btn {

@@ -1,29 +1,34 @@
 import { db } from '$lib/server/Db';
-import { fail, json } from '@sveltejs/kit';
+import { UserLinkType, type UserLink } from '@prisma/client';
+import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 import { z } from 'zod';
 import type { Actions, PageServerLoad } from './$types';
 
 const schema = z.object({
     id: z.string().uuid().nullish(),
-    title: z.string(),
-    content: z.string(),
-    url: z.string(),
-    icon: z.string().default('')
+    title: z.string().min(2).max(64),
+    content: z.string().max(2048).nullish(),
+    url: z.string().max(2048).nullish(),
+    icon: z.string().max(2048).default('').nullish(),
+    type: z.nativeEnum(UserLinkType)
 });
+
+const deleteSchema = z.object({
+    id: z.string().uuid()
+});
+
+type Check<T extends z.infer<typeof schema>> = T;
+type _tmp = Check<UserLink>;
 
 export const actions = {
     edit: async ({ request }) => {
         const form = await superValidate(request, schema);
-        console.log('POST', form);
 
-        // Convenient validation check:
         if (!form.valid) {
-            // Again, always return { form } and things will just work.
             return fail(400, { form });
         }
 
-        // TODO: Do something with the validated data
         const data = <Omit<typeof form.data, 'id'>>(
             Object.fromEntries(Object.entries(form.data).filter(([key, val]) => key != 'id'))
         );
@@ -34,8 +39,16 @@ export const actions = {
         // Yep, return { form } here too
         return { form };
     },
-    applyReorder: async ({ request }) => { 
-        return json({hello: 'world'})
+    delete: async ({ request }) => {
+        const form = await superValidate(request, deleteSchema);
+
+        if (!form.valid) {
+            return fail(400, { form });
+        }
+
+        await db.userLink.delete({ where: { id: form.data.id } });
+
+        return { form };
     }
 } satisfies Actions;
 
