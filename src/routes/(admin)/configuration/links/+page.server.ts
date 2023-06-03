@@ -19,6 +19,7 @@ const deleteSchema = z.object({
 });
 
 type Check<T extends z.infer<typeof schema>> = T;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type _tmp = Check<UserLink>;
 
 export const actions = {

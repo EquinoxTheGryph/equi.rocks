@@ -49,6 +49,10 @@ export const handle = sequence(
         theme: {
             colorScheme: 'dark'
         },
+        pages: {
+            signIn: '/user/signin',
+            signOut: '/user/signout'
+        },
         secret: env.ADMIN_SECRET
     }),
     authorization

@@ -1,7 +1,7 @@
-import type { PageServerLoad } from './$types';
-
-export const prerender = 'auto';
+import { db } from '$lib/server/Db';
 
 export const load = (async () => {
-    return {};
-}) satisfies PageServerLoad;
+    return {
+        userLinks: (await db.userLink.findMany()).sort((a, b) => a.order - b.order),
+    };
+});

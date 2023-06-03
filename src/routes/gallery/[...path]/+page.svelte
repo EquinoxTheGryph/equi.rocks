@@ -1,7 +1,3 @@
-<script lang="ts">
-    import type { PageData } from './$types';
-    
-    export let data: PageData;
-</script>
-
-<h6>Gallery coming soon™!</h6>
+<article class="flex flex-col items-center p-10">
+    <h6>Gallery coming soon™!</h6>
+</article>
