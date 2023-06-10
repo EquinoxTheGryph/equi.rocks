@@ -22,6 +22,7 @@
 		"@tailwindcss/forms": "^0.5.3",
 		"@tailwindcss/typography": "^0.5.8",
 		"@types/bcrypt": "^5.0.0",
+		"@types/marked": "^5.0.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.13",
@@ -51,7 +52,9 @@
 		"@auth/sveltekit": "^0.3.0",
 		"@prisma/client": "^4.14.0",
 		"bcrypt": "^5.1.0",
+		"isomorphic-dompurify": "^1.6.0",
 		"js-convert-case": "^4.2.0",
+		"marked": "^5.0.4",
 		"nanoid": "^4.0.2",
 		"pg": "^8.9.0",
 		"ts-node": "^10.9.1"

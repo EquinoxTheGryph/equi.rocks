@@ -59,13 +59,13 @@
     /* #endregion Fonts */
 
     /* #region Apply header and text styling */
-    h1,
+    /* h1,
     h2,
     h3,
     h4,
     h5,
     h6 {
-        @apply text-center;
+        @apply text-center mb-0;
     }
 
     h1 {
@@ -91,7 +91,7 @@
     h6,
     em {
         @apply font-light italic opacity-70;
-    }
+    } */
     /* #endregion Apply header and text styling */
 
     /* #region Apply default form styling */
