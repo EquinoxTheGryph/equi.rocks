@@ -18,6 +18,10 @@ const config = {
 			'$filters': 'src/lib/filters', // Filters convert data from one format to another
 			'$validators': 'src/lib/validators' // Validators makes sure the data is correctly supplied
 		},
+	},
+
+	compilerOptions: {
+		accessors: true
 	}
 };
 

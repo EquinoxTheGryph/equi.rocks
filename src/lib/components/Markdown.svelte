@@ -1,9 +1,13 @@
 <script lang="ts">
     import { markedSvelteExtensionInline } from '$lib/client/MarkedSvelteExtension';
     import { marked } from 'marked';
-    import { onMount } from 'svelte';
+    import { SvelteComponent, onMount, tick } from 'svelte';
+    import { componentsIndex, type ComponentItem } from './modules/ComponentIndex';
+    import { nanoid } from 'nanoid';
 
     // export let unsafe = false;
+
+    //#region
     export let value = `
 # Hello world!
 This is a **test**<br>
@@ -16,6 +20,7 @@ go to [this](#cool)
 \`\`\`lmao
 Test block
 function() {
+    () => {} == != += ?=
     cool.etc()
 }
 \`\`\`
@@ -54,23 +59,102 @@ what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
 ## How about components?
 {!test}
 {!test;hello=world;cool}
+{!test;value=10;cool}
+{!wrong}
     `;
+    //#endregion
 
     const options = {
         mangle: false,
         headerIds: false,
-        extensions: [markedSvelteExtensionInline],
+        extensions: [markedSvelteExtensionInline]
     };
 
     marked.use(options);
 
-    let output: string = marked.parse(value);
+    let output: string;
+    let articleElement: HTMLElement;
 
-    onMount(() => {
-        // output = marked.parse(value);
+    const componentStore = new Map<string, SvelteComponent>();
+
+    function render() {
+        output = marked.parse(value);
+    }
+
+    function insertComponents() {
+        articleElement.querySelectorAll('.sv-component').forEach((element) => {
+            // Skip if already registered
+            if (element.id && componentStore.has(element.id)) {
+                return;
+            }
+
+            // Extract Component from input
+            const componentName = element.getAttribute('data-component');
+
+            // Check if the input is a string
+            if (typeof componentName != 'string') {
+                console.error('Invalid component name:', componentName);
+                return;
+            }
+
+            // Check if the input is an existing component
+            const componentClass: typeof SvelteComponent | undefined = Object.entries(
+                componentsIndex
+            ).find(
+                ([_name, _component]) => _name.toLowerCase() == componentName.toLowerCase()
+            )?.[1];
+
+            if (!componentClass) {
+                console.error('No such component:', componentName);
+                return;
+            }
+
+            // Init and Register Component
+            let id = nanoid(8);
+            element.id = id;
+
+            const component = new componentClass({
+                target: element
+            });
+
+            componentStore.set(id, component);
+
+            // Extract Props from input
+            const props = element
+                .getAttributeNames()
+                .filter((attr) => attr.startsWith('data-prop-'))
+                .reduce<Map<string, string | null>>(
+                    (store, item) =>
+                        store.set(item.replace(/data-prop-/i, ''), element.getAttribute(item)),
+                    new Map()
+                );
+
+            // Check if the props exist and set it, warn otherwise
+            const componentProps = component.$$.props;
+
+            props.forEach((propValue, propName) => {
+                if (!Object.hasOwn(componentProps, propName)) {
+                    console.warn('Component has no prop named:', propName);
+                } else {
+                    component[propName] = propValue;
+                }
+            });
+        });
+    }
+
+    function updateComponent() {
+        
+    }
+
+    render();
+
+    onMount(async () => {
+        render();
+        await tick();
+        insertComponents();
     });
 </script>
 
-<article class="con prose w-full">
+<article class="prose w-full" bind:this={articleElement}>
     {@html output}
 </article>

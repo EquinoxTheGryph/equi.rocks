@@ -20,7 +20,7 @@
     })
 </script>
 
-<div class="w-60 h-60 border border-own-200 p-2">
+<div class="w-60 h-60 border border-own-200 p-2 not-prose">
     <h2>Hello world!</h2>
     <p>Value = {value}</p>
     <p>Current time = {timer}</p>

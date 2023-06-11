@@ -57,9 +57,9 @@ module.exports = {
                         '--tw-prose-headings': theme('colors.white'),
                         '--tw-prose-lead': theme('colors.own[300]'),
                         '--tw-prose-links': theme('colors.own[300]'),
-                        '--tw-prose-bold': theme('colors.white'),
+                        '--tw-prose-bold': theme('colors.own[200]'),
                         '--tw-prose-counters': theme('colors.own[400]'),
-                        '--tw-prose-bullets': theme('colors.own[600]'),
+                        '--tw-prose-bullets': theme('colors.own[400]'),
                         '--tw-prose-hr': theme('colors.own[700]'),
                         '--tw-prose-quotes': theme('colors.own[200]'),
                         '--tw-prose-quote-borders': theme('colors.own[700]'),
@@ -74,9 +74,9 @@ module.exports = {
                         '--tw-prose-invert-headings': theme('colors.own[900]'),
                         '--tw-prose-invert-lead': theme('colors.own[700]'),
                         '--tw-prose-invert-links': theme('colors.own[700]'),
-                        '--tw-prose-invert-bold': theme('colors.own[900]'),
+                        '--tw-prose-invert-bold': theme('colors.own[800]'),
                         '--tw-prose-invert-counters': theme('colors.own[600]'),
-                        '--tw-prose-invert-bullets': theme('colors.own[400]'),
+                        '--tw-prose-invert-bullets': theme('colors.own[600]'),
                         '--tw-prose-invert-hr': theme('colors.own[300]'),
                         '--tw-prose-invert-quotes': theme('colors.own[800]'),
                         '--tw-prose-invert-quote-borders': theme('colors.own[300]'),
@@ -113,6 +113,9 @@ module.exports = {
 						"blockquote p:last-of-type::after": {
 							content: null, // Don't apply quotes
 						},
+                        strong: {
+                            fontWeight: 700
+                        },
 						table: {
 							overflow: 'auto',
 							display: 'block',
