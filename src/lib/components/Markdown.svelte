@@ -1,7 +1,7 @@
 <script lang="ts">
     import { markedSvelteExtensionInline } from '$lib/client/MarkedSvelteExtension';
     import { marked } from 'marked';
-    import { SvelteComponent, onMount, tick } from 'svelte';
+    import { SvelteComponent, onDestroy, onMount, tick } from 'svelte';
     import { componentsIndex, type ComponentItem } from './modules/ComponentIndex';
     import { nanoid } from 'nanoid';
 
@@ -52,15 +52,13 @@ as you can see, it's a bagel
 ### Tables??
 Hello | world | cool | cool | cool with a lot of header text that could've been shortened but whatever | cool | cool | cool | cool | cool | cool
 --|--|-- | -- | -- | -- | -- | -- | -- | -- | --
-what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
+what | is | this | {!hello} | cool | cool | cool | cool | cool | cool | cool
 what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
 what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
 
-## How about components?
-{!test}
-{!test;hello=world;cool}
-{!test;value=10;cool}
-{!wrong}
+## How about {!hello} components?
+{!test;value=400}
+{!test;value=500}
     `;
     //#endregion
 
@@ -78,16 +76,12 @@ what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
     const componentStore = new Map<string, SvelteComponent>();
 
     function render() {
+        destroyComponents()
         output = marked.parse(value);
     }
 
     function insertComponents() {
         articleElement.querySelectorAll('.sv-component').forEach((element) => {
-            // Skip if already registered
-            if (element.id && componentStore.has(element.id)) {
-                return;
-            }
-
             // Extract Component from input
             const componentName = element.getAttribute('data-component');
 
@@ -109,15 +103,27 @@ what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
                 return;
             }
 
-            // Init and Register Component
-            let id = nanoid(8);
-            element.id = id;
+            // Create component if not done so yet
+            let component: SvelteComponent;
 
-            const component = new componentClass({
-                target: element
-            });
+            if (
+                element.id &&
+                componentStore.has(element.id) &&
+                componentStore.get(element.id) instanceof componentClass
+            ) {
+                // Reuse the component if already instantiated (TODO: Does not work yet)
+                component = componentStore.get(element.id)!;
+            } else {
+                // Init and Register Component
+                let id = nanoid(8);
+                element.id = id;
 
-            componentStore.set(id, component);
+                component = new componentClass({
+                    target: element
+                });
+
+                componentStore.set(id, component);
+            }
 
             // Extract Props from input
             const props = element
@@ -136,23 +142,28 @@ what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
                 if (!Object.hasOwn(componentProps, propName)) {
                     console.warn('Component has no prop named:', propName);
                 } else {
+                    // Set it if it does exist (Requires `accessors` to be enabled)
                     component[propName] = propValue;
                 }
             });
         });
     }
 
-    function updateComponent() {
-        
+    function destroyComponents() {
+        componentStore.forEach(item => item.$destroy())
+        componentStore.clear()
     }
 
     render();
 
     onMount(async () => {
         render();
-        await tick();
         insertComponents();
     });
+
+    onDestroy(() => {
+        destroyComponents();
+    })
 </script>
 
 <article class="prose w-full" bind:this={articleElement}>
