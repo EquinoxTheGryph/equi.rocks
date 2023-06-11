@@ -1,82 +1,30 @@
 <script lang="ts">
     import { markedSvelteExtensionInline } from '$lib/client/MarkedSvelteExtension';
     import { marked } from 'marked';
-    import { SvelteComponent, onDestroy, onMount, tick } from 'svelte';
-    import { componentsIndex, type ComponentItem } from './modules/ComponentIndex';
+    import { SvelteComponent, onDestroy, onMount } from 'svelte';
+    import { componentsIndex } from './modules/ComponentIndex';
     import { nanoid } from 'nanoid';
+    import DOMPurify from 'isomorphic-dompurify';
 
-    // export let unsafe = false;
-
-    //#region
-    export let value = `
-# Hello world!
-This is a **test**<br>
-It has cool things<br>
-Like \`inline code\` and stuff<br>
-It also has code blocks<br>
-
-go to [this](#cool)
-
-\`\`\`lmao
-Test block
-function() {
-    () => {} == != += ?=
-    cool.etc()
-}
-\`\`\`
-
-## Why?
-- It's *cool*
-- It's ~easy~
-- There are \`So many loafs\` around
-
-as you can see, it's a bagel
-
-### Cool!
-1. Number
-    1. Inner
-    1. Inner
-    1. Inner
-1. Number
-    - What
-    - What
-    - What
-1. Number
-1. Number
-
-> cool boi
-
-> Lorem ipsum
->> Dolor \`sit\` amet "cool" cob
-
-### Tables??
-Hello | world | cool | cool | cool with a lot of header text that could've been shortened but whatever | cool | cool | cool | cool | cool | cool
---|--|-- | -- | -- | -- | -- | -- | -- | -- | --
-what | is | this | {!hello} | cool | cool | cool | cool | cool | cool | cool
-what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
-what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
-
-## How about {!hello} components?
-{!test;value=400}
-{!test;value=500}
-    `;
-    //#endregion
-
-    const options = {
-        mangle: false,
-        headerIds: false,
-        extensions: [markedSvelteExtensionInline]
-    };
-
-    marked.use(options);
-
-    let output: string;
-    let articleElement: HTMLElement;
+    export let value: string;
+    export let css = '';
+    export let unsafe = false;
 
     const componentStore = new Map<string, SvelteComponent>();
+    const config: marked.MarkedExtension = {
+        mangle: false,
+        headerIds: false,
+        extensions: [markedSvelteExtensionInline],
+        hooks: {
+            postprocess: (html) => (unsafe ? html : DOMPurify.sanitize(html))
+        }
+    };
+
+    let articleElement: HTMLElement;
+    let output: string;
 
     function render() {
-        destroyComponents()
+        destroyComponents();
         output = marked.parse(value);
     }
 
@@ -150,10 +98,11 @@ what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
     }
 
     function destroyComponents() {
-        componentStore.forEach(item => item.$destroy())
-        componentStore.clear()
+        componentStore.forEach((item) => item.$destroy());
+        componentStore.clear();
     }
 
+    marked.use(config);
     render();
 
     onMount(async () => {
@@ -163,9 +112,9 @@ what | is | this | cool | cool | cool | cool | cool | cool | cool | cool
 
     onDestroy(() => {
         destroyComponents();
-    })
+    });
 </script>
 
-<article class="prose w-full" bind:this={articleElement}>
+<article class="prose w-full overflow-hidden {css}" bind:this={articleElement}>
     {@html output}
 </article>
