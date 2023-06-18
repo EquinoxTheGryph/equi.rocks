@@ -12,6 +12,7 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"passwd": "node scripts/passwd.cjs",
+		"totpgen": "tsm scripts/totpgen.ts",
 		"prisma": "prisma"
 	},
 	"devDependencies": {
@@ -23,6 +24,7 @@
 		"@tailwindcss/typography": "^0.5.8",
 		"@types/bcrypt": "^5.0.0",
 		"@types/marked": "^5.0.0",
+		"@types/qrcode": "^1.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.13",
@@ -56,7 +58,9 @@
 		"js-convert-case": "^4.2.0",
 		"marked": "^5.0.4",
 		"nanoid": "^4.0.2",
+		"otpauth": "^9.1.2",
 		"pg": "^8.9.0",
-		"ts-node": "^10.9.1"
+		"qrcode": "^1.5.3",
+		"tsm": "^2.3.0"
 	}
 }
