@@ -2,18 +2,24 @@ version: '3.7'
 services:
     # Run the node application
     node-app:
+        build: .
         container_name: node-app
         restart: unless-stopped
+        depends_on:
+            - database
         environment: 
             NODE_ENV: production
-        build:
-            context: ./
+        networks:
+            - stack
+        env_file: $PWD/.env.prod
 
     # Run the caddy server        
-    caddy:
+    entrypoint:
         image: caddy/caddy:2.6.2-alpine
-        container_name: caddy-service
+        container_name: entrypoint
         restart: unless-stopped
+        networks:
+            - stack
         ports:
             - "80:80"
             - "443:443"
@@ -24,17 +30,21 @@ services:
             - caddy_config:/config
 
     # Run the database server
-    db:
+    database:
         image: postgres
+        container_name: database
         restart: unless-stopped
-        # TODO: Let the node-app connect to the database!
+        networks:
+            - stack
         volumes:            
-            - /home/debian/Docker/Database:/var/lib/postgresql/data
-        environment:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres_dev
-            POSTGRES_DB: equirocks
+            - database:/var/lib/postgresql/data
+            # - /home/debian/Docker/Database:/var/lib/postgresql/data
+        env_file: $PWD/.env.prod
+
+networks:
+  stack:
 
 volumes:
   caddy_data:
-  caddy_config: 
+  caddy_config:
+  database:

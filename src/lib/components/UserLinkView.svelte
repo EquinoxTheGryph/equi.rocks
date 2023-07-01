@@ -51,10 +51,10 @@
         </a>
     {:else if userLink?.type == 'TITLE'}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <h2 class="mt-2 w-full text-xl" draggable="false" on:click>{userLink.title}</h2>
+        <h2 class="c-text mt-2 w-full text-xl" draggable="false" on:click>{userLink.title}</h2>
     {:else}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <h3 class="w-full text-xl" draggable="false" on:click>UNSUPPORTED</h3>
+        <h3 class="c-text w-full text-xl" draggable="false" on:click>UNSUPPORTED</h3>
     {/if}
 
     {#if editing}

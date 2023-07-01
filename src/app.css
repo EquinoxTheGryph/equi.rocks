@@ -5,9 +5,11 @@
 @layer base {
     /* #region Fonts */
     /* Sans-Serif Font */
+    /* prettier-ignore */
     @font-face {
         font-family: 'Nunito';
-        src: url('/fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype-variations'),
+        src: 
+            url('/fonts/Nunito/Nunito-VariableFont_wght.ttf') format('truetype-variations'),
             url('/fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf') format('truetype-variations'),
             url('/fonts/Nunito/static/Nunito-Black.ttf') format('truetype'),
             url('/fonts/Nunito/static/Nunito-BlackItalic.ttf') format('truetype'),
@@ -30,19 +32,18 @@
     }
 
     /* Monospace Font */
+    /* prettier-ignore */
     @font-face {
         font-family: 'JetBrains Mono';
-        src: url('/fonts/JetBrains Mono/JetBrainsMono-VariableFont_wght.ttf')
-                format('truetype-variations'),
-            url('/fonts/JetBrains Mono/JetBrainsMono-Italic-VariableFont_wght.ttf')
-                format('truetype-variations'),
+        src: 
+            url('/fonts/JetBrains Mono/JetBrainsMono-VariableFont_wght.ttf') format('truetype-variations'),
+            url('/fonts/JetBrains Mono/JetBrainsMono-Italic-VariableFont_wght.ttf') format('truetype-variations'),
             url('/fonts/JetBrains Mono/static/JetBrainsMono-Bold.ttf') format('truetype'),
             url('/fonts/JetBrains Mono/static/JetBrainsMono-BoldItalic.ttf') format('truetype'),
             url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraBold.ttf') format('truetype'),
             url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraBoldItalic.ttf') format('truetype'),
             url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraLight.ttf') format('truetype'),
-            url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraLightItalic.ttf')
-                format('truetype'),
+            url('/fonts/JetBrains Mono/static/JetBrainsMono-ExtraLightItalic.ttf') format('truetype'),
             url('/fonts/JetBrains Mono/static/JetBrainsMono-Italic.ttf') format('truetype'),
             url('/fonts/JetBrains Mono/static/JetBrainsMono-Light.ttf') format('truetype'),
             url('/fonts/JetBrains Mono/static/JetBrainsMono-LightItalic.ttf') format('truetype'),
@@ -59,39 +60,40 @@
     /* #endregion Fonts */
 
     /* #region Apply header and text styling */
-    /* h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        @apply text-center mb-0;
+    /* NOTE: Temporary until I find a proper way to style native text elements */
+    h1.c-text,
+    h2.c-text,
+    h3.c-text,
+    h4.c-text,
+    h5.c-text,
+    h6.c-text {
+        @apply mb-0 text-center;
     }
 
-    h1 {
+    h1.c-text {
         @apply pb-2 text-5xl font-medium;
     }
 
-    h2 {
+    h2.c-text {
         @apply pb-1 text-3xl;
     }
 
-    h3 {
+    h3.c-text {
         @apply text-2xl;
     }
 
-    h4 {
+    h4.c-text {
         @apply text-xl;
     }
 
-    h5 {
+    h5.c-text {
         @apply font-bold;
     }
 
-    h6,
-    em {
+    h6.c-text,
+    em.c-text {
         @apply font-light italic opacity-70;
-    } */
+    }
     /* #endregion Apply header and text styling */
 
     /* #region Apply default form styling */
@@ -144,6 +146,6 @@
 
 /* @layer components {
 	.btn {
-		@apply px-2 py-1 border-2 rounded border-primary hover:bg-primary hover:text-primary-dark active:opacity-90;
+        ...
 	}
 } */

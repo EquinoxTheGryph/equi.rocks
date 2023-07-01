@@ -11,9 +11,11 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"passwd": "node scripts/passwd.cjs",
+		"passwd": "tsm scripts/passwd.ts",
 		"totpgen": "tsm scripts/totpgen.ts",
-		"prisma": "prisma"
+		"prisma": "prisma",
+		"init": "prisma db push",
+		"serve": "prisma db push && node build ./build"
 	},
 	"devDependencies": {
 		"@mdi/js": "^7.1.96",

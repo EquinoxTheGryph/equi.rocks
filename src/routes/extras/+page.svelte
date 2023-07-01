@@ -6,7 +6,7 @@
     export let data: PageData;
 </script>
 
-<h1>Fun, Useful and Silly stuff!</h1>
+<h1 class="c-text">Fun, Useful and Silly stuff!</h1>
 <LinkButton
     linkItem={{
         title: 'Twitter anti-bot tools',
@@ -15,4 +15,4 @@
         icon: mdiTwitter
     }}
 />
-<em>...More soon!</em>
+<em class="c-text">...More soon!</em>

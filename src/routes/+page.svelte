@@ -11,7 +11,7 @@
 />
 
 <article class="flex flex-col items-center p-10">
-    <em class="pb-5">
+    <em class="c-text pb-5">
         NOTE: This page will be moved to <a href="/about" class="underline">the about page</a>
         in the future!
     </em>
@@ -22,10 +22,10 @@
             alt="A headshot drawing of Equinox The Gryphon"
             class="mb-4 h-60 w-60 rounded-full bg-own-600 drop-shadow-lg"
         />
-        <h1>Equinox The Gryphon</h1>
+        <h1 class="c-text">Equinox The Gryphon</h1>
         <p class="opacity-80">Programmer and sometimes an artist</p>
         <p class="opacity-80">23, He/Him, Dutch</p>
-        <p class="pt-2 text-sm italic opacity-50">
+        <p class="c-text pt-2 text-sm italic opacity-50">
             This site is still work in progress.
             <br />
             Keep an eye on one of my social media sites for updates!
