@@ -19,20 +19,23 @@ const rl = readline.createInterface({
     terminal: true
 });
 
-rl.question('Password: ', (password) => {
+rl.question('Password: ', async (password) => {
     mutableStdout.muted = false;
+
+    const hash = await bcrypt.hash(password, await bcrypt.genSalt(13));
+
     rl.question('Repeat Password: ', async (passwordAgain) => {
-        if (password != passwordAgain || password == '') {
+        if ((passwordAgain?.length ?? 0) <= 4) {
+            console.log('\nPassword Too Short');
+        } else if (!(await bcrypt.compare(passwordAgain, hash))) {
             console.log('\nFail');
         } else {
-            console.log(
-                '\nResult:\n' +
-                    (await bcrypt.hash(password, await bcrypt.genSalt(13))).replace(/\$/g, '\\$')
-            );
+            console.log(`\nResult:\n ${hash}`);
         }
 
         rl.close();
     });
+
     mutableStdout.muted = true;
 });
 

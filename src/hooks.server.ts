@@ -56,8 +56,6 @@ export const handle = sequence(
                         window: 1
                     }) !== null;
 
-                    console.log(passwordCorrect, totpCorrect)
-
                     return passwordCorrect && totpCorrect
                         ? {
                               id: '0',

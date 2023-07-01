@@ -29,7 +29,7 @@ To run the production version:
 npm run serve
 ```
 
-This will use any enviroment variables as defined in the `/server/.env` file.
+This will use any enviroment variables as defined in the `.env` file.
 Any additional configuration variables can be found [here](https://github.com/sveltejs/kit/tree/master/packages/adapter-node#environment-variables) 
 
 ## Docker
