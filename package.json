@@ -15,7 +15,7 @@
 		"totpgen": "tsm scripts/totpgen.ts",
 		"prisma": "prisma",
 		"init": "prisma db push",
-		"serve": "prisma db push && node build ./build"
+		"serve": "npm run init && node build ./build"
 	},
 	"devDependencies": {
 		"@mdi/js": "^7.1.96",

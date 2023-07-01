@@ -1,5 +1,5 @@
 import { db } from '$lib/server/Db';
-import { UserLinkType, type UserLink } from '@prisma/client';
+import type { UserLink } from '@prisma/client';
 import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 import { z } from 'zod';
@@ -11,7 +11,8 @@ const schema = z.object({
     content: z.string().max(2048).nullish(),
     url: z.string().max(2048).nullish(),
     icon: z.string().max(2048).default('').nullish(),
-    type: z.nativeEnum(UserLinkType)
+    // type: z.nativeEnum(UserLinkType) // See https://github.com/prisma/prisma/issues/12504
+    type: z.enum(['DESCRIPTION', 'LINK', 'TITLE', 'OTHER'])
 });
 
 const deleteSchema = z.object({

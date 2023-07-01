@@ -1,7 +1,15 @@
 <script lang="ts">
     import type { UserLink } from '@prisma/client';
-    import { UserLinkType } from '@prisma/client';
+    import type { UserLinkType } from '@prisma/client';
     import { toHeaderCase } from 'js-convert-case';
+
+    /**
+     * NOTE: Can not use the actual UserLinkType, 
+     * since there is a bug when building the project.
+     * For now, this will be hardcoded in...
+     * @see https://github.com/prisma/prisma/issues/12504
+     */
+    const userLinkType = ['DESCRIPTION', 'LINK', 'TITLE'];
 
     export let item: UserLink | null = null;
     export let delayed = false;
@@ -14,7 +22,7 @@
 
 <label for="type">Type</label>
 <select name="type" bind:value={type} {disabled}>
-    {#each Object.values(UserLinkType).filter(item => item != 'OTHER') as item}
+    {#each userLinkType as item}
         <option value={item}>{toHeaderCase(item)}</option>
     {/each}
 </select>
@@ -36,4 +44,6 @@
     <input name="icon" type="text" value={item?.icon ?? ''} {disabled} />
 {/if}
 
-<button>Edit{#if delayed}ing...{/if}</button>
+<button>
+    Edit{#if delayed}ing...{/if}
+</button>
