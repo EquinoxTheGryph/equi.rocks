@@ -86,41 +86,41 @@ module.exports = {
                         '--tw-prose-invert-pre-bg': theme('colors.own[900]'),
                         '--tw-prose-invert-th-borders': theme('colors.own[300]'),
                         '--tw-prose-invert-td-borders': theme('colors.own[200]'),
-						
-						code: {
-							backgroundColor: 'var(--tw-prose-pre-bg)',
-							padding: '0.125em 0.25em',
-							borderRadius: '0.5em'
-						},
-						'code::before': {
-							content: 'none'
-						},
-						'code::after': {
-							content: 'none'
-						},
-						'blockquote > p': {
-							margin: 0,
-						},
-						blockquote: {
-							marginTop: "0.5em",
-							marginBottom: "0.5em",
-							fontWeight: null,
-							fontStyle: null,
-						},
-						"blockquote p:first-of-type::before": {
-							content: null, // Don't apply quotes
-						},
-						"blockquote p:last-of-type::after": {
-							content: null, // Don't apply quotes
-						},
+
+                        code: {
+                            backgroundColor: 'var(--tw-prose-pre-bg)',
+                            padding: '0.125em 0.25em',
+                            borderRadius: '0.5em'
+                        },
+                        'code::before': {
+                            content: 'none'
+                        },
+                        'code::after': {
+                            content: 'none'
+                        },
+                        'blockquote > p': {
+                            margin: 0
+                        },
+                        blockquote: {
+                            marginTop: '0.5em',
+                            marginBottom: '0.5em',
+                            fontWeight: null,
+                            fontStyle: null
+                        },
+                        'blockquote p:first-of-type::before': {
+                            content: null // Don't apply quotes
+                        },
+                        'blockquote p:last-of-type::after': {
+                            content: null // Don't apply quotes
+                        },
                         strong: {
                             fontWeight: 700
                         },
-						table: {
-							overflow: 'auto',
-							display: 'block',
-						}
-                    },
+                        table: {
+                            overflow: 'auto',
+                            display: 'block'
+                        }
+                    }
                 }
             })
         },

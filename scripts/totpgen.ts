@@ -27,7 +27,7 @@ const uri = totp.toString();
 // Show a QR Code
 console.log('QR code:', await QRCode.toString(uri, { type: 'utf8', scale: 1 }));
 console.log('...Or use the following URI: ' + uri);
-console.log()
+console.log();
 
 let token: string | null = null;
 

@@ -7,13 +7,13 @@ services:
         restart: unless-stopped
         depends_on:
             - database
-        environment: 
+        environment:
             NODE_ENV: production
         networks:
             - stack
         env_file: $PWD/.env.prod
 
-    # Run the caddy server        
+    # Run the caddy server
     entrypoint:
         image: caddy/caddy:2.6.2-alpine
         container_name: entrypoint
@@ -21,9 +21,9 @@ services:
         networks:
             - stack
         ports:
-            - "80:80"
-            - "443:443"
-        volumes:            
+            - '80:80'
+            - '443:443'
+        volumes:
             - $PWD/Caddyfile:/etc/caddy/Caddyfile
             - $PWD/site:/srv
             - caddy_data:/data
@@ -36,15 +36,15 @@ services:
         restart: unless-stopped
         networks:
             - stack
-        volumes:            
+        volumes:
             - database:/var/lib/postgresql/data
             # - /home/debian/Docker/Database:/var/lib/postgresql/data
         env_file: $PWD/.env.prod
 
 networks:
-  stack:
+    stack:
 
 volumes:
-  caddy_data:
-  caddy_config:
-  database:
+    caddy_data:
+    caddy_config:
+    database:

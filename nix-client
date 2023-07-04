@@ -1,0 +1,59 @@
+#! /usr/bin/env bash
+
+set -eu
+
+client_pid=$PPID
+
+start_postgres() {
+    if postgres_is_stopped; then
+        logfile="$PWD/.nix/log/pg.log"
+        mkdir -p "$PGSOCKET" "${logfile%/*}"
+        (
+            set -m
+            pg_ctl start --silent -w --log "$logfile" -o "-k $PGSOCKET -i -h $PGHOST"
+        )
+    fi
+}
+
+postgres_is_stopped() {
+    pg_ctl status >/dev/null
+    (($? == 3))
+}
+
+case "$1" in
+add)
+    mkdir -p .nix/pids
+    touch .nix/pids/$client_pid
+
+    if [ -d "$PGDATA" ]; then
+        start_postgres
+    else
+        echo "Database does not exist."
+        echo "Creating one now..."
+        pg_ctl initdb --silent -o '--auth=trust'
+        start_postgres
+        createdb $PGDATABASE
+
+        echo "Database Created."
+        echo "Ensuring npm packages are installed..."
+        npm install
+        echo "Running npm init script..."
+        npm run init
+    fi
+
+    echo "Ready to go! ('npm run dev', or 'psql' for entering sql queries)"
+    ;;
+remove)
+    rm -r .nix/pids/$client_pid
+
+    if [ -n "$(find .nix/pids -prune -empty)" ]; then
+        pg_ctl stop --silent -W
+    fi
+
+    echo "Goodbye!"
+    ;;
+*)
+    echo "Usage: ${BASH_SOURCE[0]##*/} {add | remove}"
+    exit 1
+    ;;
+esac
