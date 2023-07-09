@@ -1,8 +1,10 @@
 <script>
 import Markdown from "$components/Markdown.svelte";
+    import MarkdownEditor from "$components/MarkdownEditor.svelte";
 
 const value = `
 # Hello world!
+Made by :iconAphelion1: <br>
 This is a **test**<br>
 It has cool things<br>
 Like \`inline code\` and stuff<br>
@@ -56,4 +58,4 @@ this is a {!test;value=400} component
 
 </script>
 
-<Markdown {value}/>
+<MarkdownEditor {value}/>

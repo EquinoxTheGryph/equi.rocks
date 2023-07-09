@@ -5,6 +5,7 @@
     import { componentsIndex } from './modules/ComponentIndex';
     import { nanoid } from 'nanoid';
     import DOMPurify from 'isomorphic-dompurify';
+    import { markedFaUserExtension } from '$lib/client/MarkedFaUserExtension';
 
     export let value: string;
     export let css = '';
@@ -14,7 +15,7 @@
     const config: marked.MarkedExtension = {
         mangle: false,
         headerIds: false,
-        extensions: [markedSvelteExtensionInline],
+        extensions: [markedSvelteExtensionInline, markedFaUserExtension],
         hooks: {
             postprocess: (html) => (unsafe ? html : DOMPurify.sanitize(html))
         }

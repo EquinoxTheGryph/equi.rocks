@@ -3,5 +3,7 @@
         "*.css": "tailwindcss",
         ".env": "shellscript",
         ".env.*": "shellscript"
-    }
+    },
+    "nixEnvSelector.suggestion": false,
+    "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix"
 }
