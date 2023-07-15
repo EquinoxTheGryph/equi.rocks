@@ -51,14 +51,17 @@
         </a>
     {:else if userLink?.type == 'TITLE'}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <h2 class="c-text mt-2 w-full text-xl" draggable="false" on:click>{userLink.title}</h2>
     {:else}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <h3 class="c-text w-full text-xl" draggable="false" on:click>UNSUPPORTED</h3>
     {/if}
 
     {#if editing}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <div
             class="invisible cursor-pointer ps-2 text-text-dark opacity-50 hover:opacity-100 group-hover:visible"
             on:click={() => dispatch('deleteClick')}

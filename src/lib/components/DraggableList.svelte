@@ -71,6 +71,7 @@
 </script>
 
 {#each list as item, index (item)}
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div
         class="cursor-grab"
         animate:flip={{ duration: disableAnimation ? 0 : 250 }}
