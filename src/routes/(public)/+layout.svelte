@@ -1,7 +1,6 @@
 <script lang="ts">
     import { mdiHammerScrewdriver, mdiHome, mdiInformation, mdiViewGallery } from '@mdi/js';
     import { page } from '$app/stores';
-    import '../app.css';
     import Icon from 'mdi-svelte';
     import Globals from '$components/Globals.svelte';
 
@@ -28,6 +27,11 @@
         }
     ];
 </script>
+
+<svelte:head>
+    <!-- Include Custom Styles -->
+    <link rel="stylesheet" href="/src/app.css" />
+</svelte:head>
 
 <!-- Navbar (Desktop) -->
 <nav

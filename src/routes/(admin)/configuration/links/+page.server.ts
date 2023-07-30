@@ -12,7 +12,7 @@ const schema = z.object({
     url: z.string().max(2048).nullish(),
     icon: z.string().max(2048).default('').nullish(),
     // type: z.nativeEnum(UserLinkType) // See https://github.com/prisma/prisma/issues/12504
-    type: z.enum(['DESCRIPTION', 'LINK', 'TITLE', 'OTHER'])
+    type: z.enum(['description', 'link', 'title', 'other'])
 });
 
 const deleteSchema = z.object({

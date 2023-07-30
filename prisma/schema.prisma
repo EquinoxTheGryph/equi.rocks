@@ -14,19 +14,47 @@ model Config {
   @@index([name])
 }
 
-model File {
-  id          String   @id @default(uuid()) @db.Uuid
-  parent      String?  @db.Uuid
+model Post {
+  id          String         @id @default(uuid()) @db.Uuid
   name        String
-  title       String
   description String?
+  altText     String?
+  visibility  PostVisibility @default(private)
+  rating      PostRating     @default(unrated)
+  groupName   String?
   mimeType    String
-  data        Bytes?
-  metadata    Json?    @db.Json
-  createdOn   DateTime @default(now())
-  modifiedOn  DateTime
+  extension   String
+  metadata    Json?          @db.Json
+  createdOn   DateTime       @default(now())
+  publishedOn DateTime       @default(now())
+  modifiedOn  DateTime       @updatedAt
+
+  group Group? @relation(fields: [groupName], references: [name])
+  tags  Tag[]
 
   @@index([id])
+}
+
+model Group {
+  name        String  @id
+  parentName  String?
+  title       String
+  description String?
+
+  posts    Post[]
+  parent   Group?  @relation(name: "GroupRelation", fields: [parentName], references: [name])
+  children Group[] @relation("GroupRelation")
+
+  @@index([name])
+}
+
+model Tag {
+  name String @id
+  type String
+
+  posts Post[]
+
+  @@index([name])
 }
 
 model UserLink {
@@ -35,15 +63,28 @@ model UserLink {
   content String? /// Item Description 
   url     String? /// Url to open when the user clicks it
   order   Int          @default(0) /// At which place should the item appear in (Lower = earlier)
-  type    UserLinkType @default(LINK) /// Display Type
+  type    UserLinkType @default(link) /// Display Type
   icon    String? /// Icon SVG Path
 
   @@index([id])
 }
 
 enum UserLinkType {
-  LINK /// Link Button
-  TITLE /// Simple Title
-  DESCRIPTION /// Simple Description
-  OTHER /// Other
+  link /// Link Button
+  title /// Simple Title
+  description /// Simple Description
+  other /// Other
+}
+
+enum PostVisibility {
+  public /// Post is visible to anyone
+  hidden /// Post is visible to those who access the URL directly
+  private /// Post is only visible to the owner (Default)
+}
+
+enum PostRating {
+  general /// SFW
+  mature /// Adult-oriented 
+  explicit /// NSFW
+  unrated /// No rating has been determined yet
 }

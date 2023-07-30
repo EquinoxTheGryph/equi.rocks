@@ -9,13 +9,13 @@
      * For now, this will be hardcoded in...
      * @see https://github.com/prisma/prisma/issues/12504
      */
-    const userLinkType = ['DESCRIPTION', 'LINK', 'TITLE'];
+    const userLinkType = ['description', 'link', 'title'];
 
     export let item: UserLink | null = null;
     export let delayed = false;
     export let disabled = false;
 
-    let type: UserLinkType = item?.type ?? 'LINK';
+    let type: UserLinkType = item?.type ?? 'link';
 </script>
 
 <input type="hidden" name="id" value={item?.id ?? ''} {disabled} />
@@ -30,12 +30,12 @@
 <label for="title">Title</label>
 <input name="title" type="text" value={item?.title ?? ''} {disabled} />
 
-{#if type != 'TITLE'}
+{#if type != 'title'}
     <label for="content">Content</label>
     <textarea name="content" value={item?.content ?? ''} {disabled} />
 {/if}
 
-{#if type == 'LINK'}
+{#if type == 'link'}
     <hr />
     <label for="url">Url</label>
     <input name="url" type="url" value={item?.url ?? ''} {disabled} />

@@ -11,7 +11,7 @@
 </script>
 
 <div class="group flex w-80 items-center">
-    {#if userLink?.type == 'LINK'}
+    {#if userLink?.type == 'link'}
         <a
             draggable="false"
             on:click
@@ -49,7 +49,7 @@
                 <span class="w-[24px] px-2" />
             {/if}
         </a>
-    {:else if userLink?.type == 'TITLE'}
+    {:else if userLink?.type == 'title'}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <h2 class="c-text mt-2 w-full text-xl" draggable="false" on:click>{userLink.title}</h2>

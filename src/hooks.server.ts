@@ -30,12 +30,18 @@ export const handle = sequence(
     SvelteKitAuth({
         providers: [
             Credentials({
-                name: 'oungh',
+                name: 'credentials',
                 credentials: {
                     username: { label: 'speng glob' },
-                    password: { label: 'ungo sploingo', type: 'password' }
+                    password: { label: 'ungo sploingo', type: 'password' },
+                    token: { label: 'lofa', type: 'password' }
                 },
                 async authorize(request) {
+                    // return {
+                    //     id: '0',
+                    //     name: 'admin'
+                    // }
+
                     const schema = z.object({
                         username: z.literal(env.ADMIN_USER),
                         password: z.string().max(128),
@@ -70,7 +76,8 @@ export const handle = sequence(
         },
         pages: {
             signIn: '/user/signin',
-            signOut: '/user/signout'
+            signOut: '/user/signout',
+            error: '/user/error'
         },
         secret: env.ADMIN_SECRET
     }),
