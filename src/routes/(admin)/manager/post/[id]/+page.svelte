@@ -1,39 +1,31 @@
 <script lang="ts">
+    import { page } from '$app/stores';
     import ComboBoxCustom from '$components/carbon/ComboBoxCustom.svelte';
     import MarkdownEditorCarbon from '$components/carbon/MarkdownEditorCarbon.svelte';
-    import { mdiCog } from '@mdi/js';
+    import { mdiArrowLeft, mdiCog, mdiFloppy } from '@mdi/js';
+    import type { Post } from '@prisma/client';
     import {
-        Content,
-        Grid,
-        Row,
+        Button,
         Column,
-        ImageLoader,
         DatePicker,
         DatePickerInput,
-        TextInput,
-        FileUploaderItem,
         FileUploader,
-        ComboBox,
-        Tag,
-        ButtonSet,
-        TextArea,
-        ContentSwitcher,
-        Switch,
-        Tabs,
-        Tab,
-        TabContent
-    } from 'carbon-components-svelte';
-    import {
         Form,
         FormGroup,
-        Checkbox,
-        RadioButtonGroup,
+        Grid,
+        ImageLoader,
         RadioButton,
-        Select,
-        SelectItem,
-        Button
+        RadioButtonGroup,
+        Row,
+        Tag,
+        TextArea,
+        TextInput
     } from 'carbon-components-svelte';
     import Icon from 'mdi-svelte';
+
+    export let data;
+
+    const isNew = $page.params.id === 'new';
 
     let groupItems = [
         { id: '0', text: 'Slack' },
@@ -50,15 +42,58 @@
         { id: '0', text: 'Hello' },
         { id: '1', text: 'World' }
     ];
+
+    let value: Post = {
+        id: '',
+        name: 'Unnamed',
+        description: '',
+        altText: '',
+        visibility: 'private',
+        rating: 'unrated',
+        groupName: null,
+        mimeType: '',
+        extension: '',
+        metadata: {
+            source: 'It was a vision in my dreams'
+        },
+        createdOn: new Date(),
+        publishedOn: new Date(),
+        modifiedOn: new Date()
+    };
+
+    async function saveChanges() {
+        console.log(value);
+    }
 </script>
 
 <Grid>
     <Row>
-        <h1 style="margin-bottom: 0.5em;">Manage Post</h1>
+        <div class="header">
+            <Button
+                size="field"
+                kind="ghost"
+                class="iconButton"
+                on:click={() => window.history.back()}
+            >
+                <Icon path={mdiArrowLeft} title="Go Back" />
+            </Button>
+            <h1>
+                {#if isNew}
+                    New
+                {:else}
+                    Manage
+                {/if} Post
+            </h1>
+            <div class="spacer" />
+            <Button size="field" kind="tertiary" class="iconButton" on:click={saveChanges}>
+                <p>Save Changes</p>
+                <Icon path={mdiFloppy} title="Save Changes" />
+            </Button>
+        </div>
     </Row>
     <Row>
         <Column lg={6}>
-            <Form on:submit>
+            <Form on:submit={(e) => e.preventDefault()}>
                 <FormGroup legendText="File">
                     <ImageLoader src="https://picsum.photos/id/1/1000/1000" fadeIn />
                     <FileUploader buttonLabel="Add File" status="edit" />
@@ -72,7 +107,7 @@
                     />
                 </FormGroup>
                 <FormGroup legendText="Visibility">
-                    <RadioButtonGroup name="visibility" selected="private">
+                    <RadioButtonGroup bind:selected={value.visibility}>
                         <RadioButton
                             id="visibility-public"
                             value="public"
@@ -95,7 +130,7 @@
                 </FormGroup>
 
                 <FormGroup legendText="Rating">
-                    <RadioButtonGroup name="rating" selected="unrated">
+                    <RadioButtonGroup bind:selected={value.rating}>
                         <RadioButton
                             id="rating-general"
                             value="general"
@@ -128,12 +163,12 @@
                         <ComboBoxCustom
                             placeholder="Select Group"
                             items={groupItems}
-                            selectedId="2"
+                            bind:selectedId={value.groupName}
                             on:newItem={(e) => console.log(e.detail)}
                             on:select={(e) => console.log(e.detail)}
                         />
-                        <Button size="field" kind="ghost">
-                            <Icon path={mdiCog} color="#f4f4f4" title="Manage Groups" />
+                        <Button size="field" kind="ghost" class="iconButton">
+                            <Icon path={mdiCog} title="Manage Groups" />
                         </Button>
                     </div>
                 </FormGroup>
@@ -151,8 +186,8 @@
                                     selectedTags = [...selectedTags, e.detail];
                             }}
                         />
-                        <Button size="field" kind="ghost">
-                            <Icon path={mdiCog} color="#f4f4f4" title="Manage Tags" />
+                        <Button size="field" kind="ghost" class="iconButton">
+                            <Icon path={mdiCog} title="Manage Tags" />
                         </Button>
                     </div>
 
@@ -176,33 +211,33 @@
                 </FormGroup>
 
                 <FormGroup legendText="Created On (Custom, Optional)">
-                    <DatePicker name="createdOn" datePickerType="single">
+                    <DatePicker bind:value={value.createdOn} datePickerType="single">
                         <DatePickerInput placeholder="mm/dd/yyyy" />
                     </DatePicker>
                 </FormGroup>
 
                 <FormGroup legendText="Source (Optional)">
                     <TextInput
-                        name="source"
+                        bind:value={value.metadata.source}
                         placeholder="https://gallery.example.org/post/abc123"
                     />
                 </FormGroup>
             </Form>
         </Column>
         <Column lg={10}>
-            <Form on:submit>
+            <Form on:submit={(e) => e.preventDefault()}>
                 <FormGroup legendText="Title">
-                    <TextInput name="name" placeholder="Title Text" />
+                    <TextInput bind:value={value.name} placeholder="Title Text" size="xl" />
                 </FormGroup>
                 <FormGroup legendText="Alt Text (Optional)">
                     <TextArea
-                        name="altText"
+                        bind:value={value.altText}
                         placeholder="A description about the given media for screenreaders"
                         rows={2}
                     />
                 </FormGroup>
                 <FormGroup legendText="Description (Supports markdown, Optional)">
-                    <MarkdownEditorCarbon />
+                    <MarkdownEditorCarbon bind:value={value.description} />
                 </FormGroup>
             </Form>
         </Column>
@@ -218,6 +253,31 @@
         display: flex;
         :global(.bx--list-box__wrapper) {
             width: 100%;
+        }
+    }
+
+    :global(.iconButton) {
+        // This will remove the weird right padding 
+        // (15px is hardcoded in the style)
+        padding-right: 15px;
+
+        p {
+            margin-right: 15px;
+        }
+    }
+
+    :global(.iconButton.bx--btn--ghost) {
+        color: #f4f4f4 !important;
+    }
+
+    .header {
+        display: flex;
+        gap: 0.5em;
+        margin-bottom: 2em;
+        width: 100%;
+
+        .spacer {
+            flex-grow: 1;
         }
     }
 </style>

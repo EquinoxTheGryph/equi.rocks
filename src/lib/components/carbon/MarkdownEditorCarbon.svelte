@@ -6,14 +6,14 @@
 
     let selected: number | undefined;
 
-    export let value: string = '';
+    export let value: string | undefined | null = '';
 
     let frame: HTMLIFrameElement;
 
     let renderIFrame = false;
 
     $: if (selected == 1) {
-        renderMarkdown(value);
+        renderMarkdown(value ?? '');
     }
 
     /**

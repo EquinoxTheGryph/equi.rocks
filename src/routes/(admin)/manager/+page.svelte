@@ -6,7 +6,8 @@
     <Row>
         <Column>
             <h1>Welcome</h1>
-            <a href="/manager/post/waddwawa">test page</a>
+            <a href="/manager/post/waddwawa">Test Post</a>
+            <a href="/manager/post/new">New Post</a>
         </Column>
     </Row>
 </Grid>
