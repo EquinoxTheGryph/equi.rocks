@@ -26,9 +26,9 @@
     ];
 </script>
 
-<section class="flex h-full w-full justify-stretch">
+<!-- <section class="flex h-full w-full justify-stretch"> -->
     <!-- Sidebar -->
-    <nav class="flex h-full w-40 flex-col">
+    <!-- <nav class="flex h-full w-40 flex-col">
         {#each navLinks as navItem}
             <a
                 href={navItem.action}
@@ -39,9 +39,9 @@
                 {navItem.name}
             </a>
         {/each}
-    </nav>
+    </nav> -->
 
-    <main class="flex w-full grow flex-col items-center p-10">
+    <!-- <main class="flex w-full grow flex-col items-center p-10"> -->
         <slot />
-    </main>
-</section>
+    <!-- </main> -->
+<!-- </section> -->

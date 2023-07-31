@@ -7,6 +7,11 @@
 
 <RichPreviewInfo title={`Page error ${$page.status}: ${$page.error?.message}`} />
 
+<svelte:head>
+    <!-- Include Custom Styles -->
+    <link rel="stylesheet" href="/src/app.css" />
+</svelte:head>
+
 <main class="flex flex-col items-center p-10">
 	<img
 		src="/images/loaf.png"
@@ -20,4 +25,5 @@
 			Art by <a class="underline" href="https://twitter.com/Blajnart">Blajn</a>
 		</em>
 	</section>
+	<button on:click={() => window.history.back()}>Go Back</button>
 </main>
