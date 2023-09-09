@@ -2,7 +2,9 @@ version: '3.7'
 services:
     # Run the node application
     node-app:
-        build: .
+        build: 
+            context: .
+            dockerfile: ./Dockerfile
         container_name: node-app
         restart: unless-stopped
         depends_on:
@@ -15,7 +17,10 @@ services:
 
     # Run the caddy server
     entrypoint:
-        image: caddy/caddy:2.6.2-alpine
+        # image: caddy/caddy:2.6.2-alpine
+        build:
+            context: .
+            dockerfile: ./Dockerfile.caddy
         container_name: entrypoint
         restart: unless-stopped
         networks:
@@ -28,6 +33,7 @@ services:
             - $PWD/site:/srv
             - caddy_data:/data
             - caddy_config:/config
+        env_file: $PWD/.env.prod
 
     # Run the database server
     database:
