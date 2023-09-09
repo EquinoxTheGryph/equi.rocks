@@ -14,6 +14,9 @@ const totp = new OTPAuth.TOTP({
     secret: env.ADMIN_TOTP_SECRET
 });
 
+/**
+ * Require authentication inside all (admin) pages
+ */
 const authorization: Handle = async ({ event, resolve }) => {
     // Protect any routes under /configuration
     if (event.route.id?.includes('(admin)')) {
@@ -25,6 +28,28 @@ const authorization: Handle = async ({ event, resolve }) => {
 
     return resolve(event);
 };
+
+// /**
+//  * This will look for and replace any special tags
+//  * in the output html if the page is public or not
+//  */
+// const baseHtml: Handle = async ({ event, resolve }) => {
+//     const isPublic =
+//         event.route.id?.includes('(public)') || event.route.id?.includes('preview-markdown');
+//     return resolve(event, {
+//         transformPageChunk({ html }) {
+//             if (isPublic) {
+//                 return html
+//                     .replaceAll(/%ifNot:public%(.|\n)*?%end:public%/gi, '')
+//                     .replaceAll(/%(if|end):public%/gi, '')
+//             } else {
+//                 return html
+//                     .replaceAll(/%if:public%(.|\n)*?%end:public%/gi, '')
+//                     .replaceAll(/%(ifNot|end):public%/gi, '')
+//             }
+//         }
+//     });
+// };
 
 export const handle = sequence(
     SvelteKitAuth({
@@ -57,10 +82,11 @@ export const handle = sequence(
                         env.ADMIN_PASS
                     );
 
-                    const totpCorrect = totp.validate({
-                        token: result.data.token,
-                        window: 1
-                    }) !== null;
+                    const totpCorrect =
+                        totp.validate({
+                            token: result.data.token,
+                            window: 1
+                        }) !== null;
 
                     return passwordCorrect && totpCorrect
                         ? {
@@ -81,5 +107,6 @@ export const handle = sequence(
         },
         secret: env.ADMIN_SECRET
     }),
-    authorization
+    authorization,
+    // baseHtml
 ) satisfies Handle;

@@ -28,11 +28,6 @@
     ];
 </script>
 
-<svelte:head>
-    <!-- Include Custom Styles -->
-    <link rel="stylesheet" href="/src/app.css" />
-</svelte:head>
-
 <!-- Navbar (Desktop) -->
 <nav
     class="sticky top-0 z-nav flex h-nav w-full bg-secondary-dark bg-opacity-70 text-text-dark drop-shadow-md backdrop-blur max-sm:hidden"

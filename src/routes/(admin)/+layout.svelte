@@ -20,11 +20,6 @@
     let isSideNavOpen = false;
 </script>
 
-<svelte:head>
-    <!-- Include Carbon Styles -->
-    <link rel="stylesheet" href="/node_modules/carbon-components-svelte/css/g90.css" />
-</svelte:head>
-
 <Header platformName="equi.rocks" bind:isSideNavOpen href="/">
     <svelte:fragment slot="skip-to-content">
         <SkipToContent />

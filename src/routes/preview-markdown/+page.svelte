@@ -22,11 +22,6 @@
     });
 </script>
 
-<svelte:head>
-    <!-- Include Custom Styles -->
-    <link rel="stylesheet" href="/src/app.css" />
-</svelte:head>
-
 <div class="p-4 h-screen w-screen">
     {#if value}
         {#key value}
